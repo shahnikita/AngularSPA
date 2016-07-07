@@ -1,0 +1,7 @@
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.pdb
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.xml
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.csprojResolveAssemblyReference.cache
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.pdb

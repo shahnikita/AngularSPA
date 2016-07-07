@@ -1,0 +1,151 @@
+﻿<!--<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Content/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-text">
+                <span>Dashboard</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="side-bar">
+                <ul>
+                    <li>
+                        <a>Vendor</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="adminApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Index</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- MetisMenu CSS -->
+    <link href="../Content/metisMenu.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="../Content/Index/admin.css" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Admin Panel</a>
+            </div>
+
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#vendor"><i class="fa fa-bar-chart-o fa-fw"></i>Vendor</a>
+                        </li>
+                        <li>
+                            <a href="#product"><i class="fa fa-table fa-fw"></i>Product</a>
+                        </li>
+                        <li>
+                            <a href="#customer"><i class="fa fa-edit fa-fw"></i>Customer</a>
+                        </li>
+
+                        <li>
+                            <a href="#order"><i class="fa fa-wrench fa-fw"></i>Order</a>
+                            <!--<ul class="nav nav-second-level">
+                                <li>
+                                    <a class="active" href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>-->
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper" ng-view ng-controller="mainController" >
+            
+        </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!--AngularJS-->
+     <script src="../Scripts/angular.min.js"></script>
+
+    <!--angular-route-->
+    <script src="../Scripts/angular-route.min.js"></script>
+    <!-- jQuery -->
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../Scripts/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../Scripts/metisMenu.min.js"></script>
+
+
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../Scripts/Custom/index.js"></script>
+   
+   
+
+    <!--<script src="../Scripts/Custom/admin.js"></script>-->
+</body>
+
+</html>
+

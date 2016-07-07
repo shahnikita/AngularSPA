@@ -1,0 +1,16 @@
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.Core.dll.config
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.Core.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.Core.pdb
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.DataRepository.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.Util.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\EntityFramework.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\log4net.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.DataRepository.pdb
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\AngularSPA.Util.pdb
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\EntityFramework.xml
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\log4net.xml
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.csprojResolveAssemblyReference.cache
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.pdb
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\Autofac.dll
+D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\Autofac.xml
