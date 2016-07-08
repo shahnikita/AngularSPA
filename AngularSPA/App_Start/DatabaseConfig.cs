@@ -21,7 +21,7 @@ namespace AngularSPA.App_Start
                 using (var dbContext = componentContext.Resolve<DbContext>())
                 {
 
-                   dbContext.Database.Initialize(true);
+                   dbContext.Database.Initialize(false);
                     //if (!dbContext.Database.Exists())
                     //{
                     //    dbContext.Database.Initialize(false);

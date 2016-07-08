@@ -1,4 +1,5 @@
 ﻿using AngularSPA.Core.Controllers;
+using AngularSPA.Core.Lib;
 using AngularSPA.Core.Repository;
 using AngularSPA.DataRepository.Models;
 using AngularSPA.DataRepository.Repository;
@@ -26,7 +27,7 @@ namespace AngularSPA.App_Start
                 containerBuilder.RegisterControllers(typeof(HomeController).Assembly);
 
                 /*Register Libs Files Here*/
-                //   containerBuilder.RegisterType<SetUpLib>().As<ISetupLib>();
+                containerBuilder.RegisterType<VendorLib>().As<VendorLib>();
 
 
                 //Register Database Configuration

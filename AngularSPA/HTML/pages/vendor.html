@@ -3,7 +3,76 @@
         <div class="col-lg-12">
             <h1 class="page-header">{{message}}</h1>
         </div>
-        <!-- /.col-lg-12 -->
+
     </div>
-    <!-- /.row -->
+
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+
+            <div class="panel panel-default">
+                <div class="panel-body" ng-if="vendors.length >0">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="item in vendors">
+                                <tr>
+                                    <td>{{item.VendorId}}</td>
+                                    <td>{{item.VendorName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ng-if="vendors.length <=0">
+                    No records Found.
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-lg-12">
+
+            <div class="panel">
+                <div class="panel-body">
+                    <button type="button" class="btn btn-success" data-ng-click="formToggle()">ADD</button>
+                </div>
+            </div>
+
+            <div class="panel" data-ng-show="isDisplayForm">
+               <form name="vendorForm" ng-submit="insert()" novalidate>
+
+            <!-- NAME -->
+            <div class="form-group" ng-class="{ 'has-error' : vendorForm.VendorName.$invalid && !vendorForm.VendorName.$pristine }">
+                <label>Name</label>
+                <input type="text" name="VendorName" class="form-control" ng-model="vendor.VendorName" required data-ng-minlength="3" data-ng-maxlength="30">
+                <p class="help-block" ng-show="vendorForm.VendorName.$error.minlength">Too short!</p>
+                <p class="help-block" ng-show="vendorForm.VendorName.$error.maxlength">Too long!</p>
+                <p class="help-block" ng-show="vendorForm.VendorName.$error.required">Required!</p>                
+            </div>
+
+           
+            <button type="submit" class="btn btn-primary" ng-disabled="vendorForm.$invalid">Submit</button>
+
+        </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
 </div>
+
+
+   
