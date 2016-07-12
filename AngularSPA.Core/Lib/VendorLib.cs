@@ -12,7 +12,7 @@ namespace AngularSPA.Core.Lib
 {
     public class VendorLib
     {
-         #region "Private Variables"
+        #region "Private Variables"
         private IComponentContext _componentContext;
         #endregion
 
@@ -49,7 +49,7 @@ namespace AngularSPA.Core.Lib
 
         #endregion
 
-        public List<Vendor> GetAllVendor()
+        public List<Vendor> GetAll()
         {
             try
             {
@@ -68,13 +68,32 @@ namespace AngularSPA.Core.Lib
             return null;
         }
 
-        public int InsertVendor(Vendor v)
+        public Vendor Get(int id)
         {
             try
-            {             
+            {
+                Vendor vendor = new Vendor();
                 using (var vendorContext = _componentContext.Resolve<IDataRepository<Vendor>>())
                 {
-                    v=vendorContext.Add(v);
+                    vendor = vendorContext.GetById(id);
+
+                }
+                return vendor;
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return null;
+        }
+
+        public int InsertUpdate(Vendor v)
+        {
+            try
+            {
+                using (var vendorContext = _componentContext.Resolve<IDataRepository<Vendor>>())
+                {
+                    v = v.VendorId == 0 ? vendorContext.Add(v) : vendorContext.Update(v);
                     vendorContext.SaveChanges();
 
                 }
@@ -86,5 +105,25 @@ namespace AngularSPA.Core.Lib
             }
             return 0;
         }
+
+        public int Delete(int id)
+        {
+            try
+            {
+                using (var vendorContext = _componentContext.Resolve<IDataRepository<Vendor>>())
+                {
+                    vendorContext.Delete(id);
+                    vendorContext.SaveChanges();
+
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return 0;
+        }
+
     }
 }

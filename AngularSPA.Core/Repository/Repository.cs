@@ -91,17 +91,19 @@ namespace AngularSPA.Core.Repository
         /// Method call when explicitly updating the enteries.
         /// </summary>
         /// <param name="entity"></param>
-        public void Update(T entity)
+        public T Update(T entity)
         {
             try
             {
                 var entry = _context.Entry(entity);
                 _dbSet.Attach(entity);
                 entry.State = EntityState.Modified;
+                return entity;
             }
             catch (Exception ex)
             {
                 GlobalUtil.HandleAndLogException(ex, this);
+                return null;
             }
         }
 

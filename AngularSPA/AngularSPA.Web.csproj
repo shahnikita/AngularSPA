@@ -249,7 +249,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="HTML\Index.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -258,19 +257,12 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="HTML\Index.html" />
     <Content Include="HTML\pages\home.html" />
     <Content Include="HTML\pages\product.html" />
     <Content Include="HTML\pages\vendor.html" />
-    <Content Include="HTML\pages\vendorForm.html" />
-    <Content Include="Scripts\angular-animate.js" />
-    <Content Include="Scripts\angular-animate.min.js" />
-    <Content Include="Scripts\angular-aria.js" />
-    <Content Include="Scripts\angular-aria.min.js" />
-    <Content Include="Scripts\angular-cookies.js" />
-    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Scripts\angular-csp.css" />
-    <Content Include="Scripts\angular-loader.js" />
-    <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
     <Content Include="Scripts\angular-message-format.min.js" />
     <Content Include="Scripts\angular-messages.js" />
@@ -290,6 +282,12 @@
     <None Include="Scripts\angular.intellisense.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\Custom\app.js" />
+    <Content Include="Scripts\Custom\controller\mainController.js" />
+    <Content Include="Scripts\Custom\controller\productController.js" />
+    <Content Include="Scripts\Custom\controller\vendorController.js" />
+    <Content Include="Scripts\Custom\directives\loading.js" />
+    <Content Include="Scripts\Custom\services\vendorService.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -298,10 +296,6 @@
     <Content Include="Scripts\angular-parse-ext.min.js.map" />
     <Content Include="Scripts\angular-messages.min.js.map" />
     <Content Include="Scripts\angular-message-format.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1067,6 +1061,8 @@
     <Content Include="Scripts\metisMenu.js" />
     <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

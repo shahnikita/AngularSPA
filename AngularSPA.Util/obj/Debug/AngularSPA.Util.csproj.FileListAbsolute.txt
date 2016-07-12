@@ -5,3 +5,17 @@ D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.xml
 D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.csprojResolveAssemblyReference.cache
 D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.dll
 D:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.pdb
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.dll
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.pdb
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.dll
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.xml
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.csprojResolveAssemblyReference.cache
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.dll
+E:\D\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.pdb
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.dll
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\AngularSPA.Util.pdb
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.dll
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\bin\Debug\log4net.xml
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.csprojResolveAssemblyReference.cache
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.dll
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Util\obj\Debug\AngularSPA.Util.pdb

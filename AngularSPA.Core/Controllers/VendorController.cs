@@ -29,7 +29,7 @@ namespace AngularSPA.Core.Controllers
             try
             {
                 var vendorContext = _componentContext.Resolve<VendorLib>();
-                vendorList = vendorContext.GetAllVendor();
+                vendorList = vendorContext.GetAll();
 
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace AngularSPA.Core.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertVendor(Vendor item)
+        public JsonResult InsertUpdateVendor(Vendor item)
         {
             int vendorID = 0;
             try
@@ -49,13 +49,52 @@ namespace AngularSPA.Core.Controllers
                 if (ModelState.IsValid)
                 {
                     var vendorContext = _componentContext.Resolve<VendorLib>();
-                    vendorID = vendorContext.InsertVendor(item);
+
+
+                    vendorID =
+                        vendorContext.InsertUpdate(item);
+
+
                 }
             }
             catch (Exception ex)
             {
                 GlobalUtil.HandleAndLogException(ex, this);
             }
+            return Json(vendorID != 0, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetVendor(int id)
+        {
+            Vendor vendor = null;
+            try
+            {
+                var vendorContext = _componentContext.Resolve<VendorLib>();
+                vendor = vendorContext.Get(id);
+
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+
+            return Json(vendor, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DeleteVendor(int id)
+        {
+            int vendorID = 0;
+            try
+            {
+                var vendorContext = _componentContext.Resolve<VendorLib>();
+                vendorID = vendorContext.Delete(id);
+
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+
             return Json(vendorID!=0, JsonRequestBehavior.AllowGet);
         }
     }

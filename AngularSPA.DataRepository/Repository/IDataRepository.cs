@@ -30,7 +30,7 @@ namespace AngularSPA.DataRepository.Repository
         /// Update the entity into the datacontext.
         /// </summary>
         /// <param name="entity"></param>
-        void Update(T entity);
+        T Update(T entity);
 
         /// <summary>
         ///   Gets objects via optional filter, sort order, and includes
