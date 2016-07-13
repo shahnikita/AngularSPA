@@ -1,6 +1,6 @@
 ﻿/// <reference path="../angular.intellisense.js" />
 
-'use strict';
+
 
 var apiPaths = {
     addupdateVendor: "/vendor/InsertUpdateVendor/",
@@ -9,18 +9,17 @@ var apiPaths = {
     deleteVendor: "/vendor/DeleteVendor/"
 };
 
-
 require(['angular',
          'angularRoute',
-
+         'jquery',
          'directives/loading',
          'services/vendorService',
            'controller/mainController',
              'controller/vendorController',
-], function (angular, angularRoute, loadingDir, vendorSvr, mainController, vendorController) {
+], function (angular, angularRoute,$, loadingDir, vendorSvr, mainController, vendorController) {
     // create the module and name it adminApp
     var adminApp = angular.module('adminApp', ['ngRoute', 'LoadingDirective', 'vendorService']);
-
+   
     // configure our routes
     adminApp.config(function ($routeProvider) {
         $routeProvider
@@ -45,8 +44,10 @@ require(['angular',
                          controller: 'mainController'
                      });
     })
-    .controller('mainController', mainController)
+    .controller('mainController',mainController)
      .controller('vendorController', vendorController);
+
+    angular.bootstrap(document, ['adminApp']);
 });
 
 

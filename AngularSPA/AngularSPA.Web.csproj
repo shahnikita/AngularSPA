@@ -186,6 +186,8 @@
     <Content Include="Content\Index\admin.css" />
     <Content Include="Content\metisMenu.css" />
     <Content Include="Content\metisMenu.min.css" />
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\ng-grid.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -261,6 +263,7 @@
     <Content Include="HTML\pages\home.html" />
     <Content Include="HTML\pages\product.html" />
     <Content Include="HTML\pages\vendor.html" />
+    <Content Include="HTML\vendorGrid.html" />
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Scripts\angular-csp.css" />
     <Content Include="Scripts\angular-message-format.js" />
@@ -283,6 +286,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Custom\app.js" />
+    <Content Include="Scripts\Custom\app1.js" />
     <Content Include="Scripts\Custom\controller\mainController.js" />
     <Content Include="Scripts\Custom\controller\productController.js" />
     <Content Include="Scripts\Custom\controller\vendorController.js" />
@@ -1061,6 +1065,8 @@
     <Content Include="Scripts\metisMenu.js" />
     <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\ng-grid.js" />
+    <Content Include="Scripts\ng-grid.min.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Web.config" />

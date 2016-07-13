@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="adminApp">
+<html lang="en">
 
 <head>
 
@@ -17,6 +17,9 @@
 
     <!-- MetisMenu CSS -->
     <link href="../Content/metisMenu.min.css" rel="stylesheet" />
+    
+    <!--ng-grid-->
+    <link href="../Content/ng-grid.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="../Content/Index/admin.css" rel="stylesheet" />
@@ -94,7 +97,7 @@
                     <img src="../Images/ajax-loader.gif" style="width: 100px; height: 100px" />
                 </div>
             </div>
-            <div ng-view ng-controller="mainController">
+            <div ng-view >
             </div>
         </div>
 
@@ -103,8 +106,8 @@
     <!-- /#wrapper -->
     <script data-main="../Scripts/Custom/index.js" src="../Scripts/require.js"></script>
 
-
    
+
 
 </body>
 
