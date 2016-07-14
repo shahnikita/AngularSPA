@@ -6,6 +6,7 @@ require.config({
         metisMenu: '../metisMenu.min',
         angular: '../angular',
         angularRoute: '../angular-route.min',
+
         angularGrid:'../ng-grid.min'
     },
     shim: {
@@ -23,11 +24,13 @@ require.config({
             deps: ['angular', 'jquery'],
             exports: 'angularGrid'
         }
-
-    },
-    deps: ['app']
-    //deps: ['app1']
+    }
 });
 
 
 
+require(
+    ['app'],
+    function () {
+        angular.bootstrap(document, ['adminApp']);
+    });

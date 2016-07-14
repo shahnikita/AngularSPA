@@ -9,45 +9,46 @@ var apiPaths = {
     deleteVendor: "/vendor/DeleteVendor/"
 };
 
-require(['angular',
-         'angularRoute',
-         'jquery',
-         'directives/loading',
-         'services/vendorService',
-           'controller/mainController',
-             'controller/vendorController',
-], function (angular, angularRoute,$, loadingDir, vendorSvr, mainController, vendorController) {
+define(['angular'
+         ,'angularRoute'
+         ,'jquery'
+         ,'directives/loading'
+         ,'services/routeResolver'
+], function (angular, angularRoute, $, loadingDir, routResolver) {
     // create the module and name it adminApp
-    var adminApp = angular.module('adminApp', ['ngRoute', 'LoadingDirective', 'vendorService']);
+    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective']);
    
     // configure our routes
-    adminApp.config(function ($routeProvider) {
-        $routeProvider
-                    // route for the about page
-                    .when('/vendor', {
-                        templateUrl: 'pages/vendor.html',
-                        controller: 'vendorController'
-                    })
+    adminApp.config(['$routeProvider', 'routeResolverProvider', '$controllerProvider',
+                  '$compileProvider', '$filterProvider', '$provide',
+          function ($routeProvider, routeResolverProvider, $controllerProvider, 
+                    $compileProvider, $filterProvider, $provide) {
+              //Change default views and controllers directory using the following:
+             
 
-                    // route for the contact page
-                    .when('/product', {
-                        templateUrl: 'pages/product.html',
-                        controller: 'productController'
-                    })
-                    // route for the home page
-                    .when('/', {
-                        templateUrl: 'pages/home.html',
-                        controller: 'mainController'
-                    })
-                     .otherwise({
-                         templateUrl: 'pages/home.html',
-                         controller: 'mainController'
-                     });
-    })
-    .controller('mainController',mainController)
-     .controller('vendorController', vendorController);
+              adminApp.register =
+              {
+                  controller: $controllerProvider.register,
+                  directive: $compileProvider.directive,
+                  filter: $filterProvider.register,
+                  factory: $provide.factory,
+                  service: $provide.service
+              };
 
-    angular.bootstrap(document, ['adminApp']);
+              //Define routes - controllers will be loaded dynamically
+              var route = routeResolverProvider.route;
+
+              $routeProvider
+                  .when('/vendor', route.resolve('vendor','','vendor'))
+                  .when('/product', route.resolve('product'))
+                  .when('/', route.resolve('home'))
+                  .otherwise({ redirectTo: '/home' });
+
+
+
+          }]);
+
+    return  adminApp
 });
 
 
