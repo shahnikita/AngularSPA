@@ -7,7 +7,7 @@ require.config({
         angular: '../angular',
         angularRoute: '../angular-route.min',
 
-        angularGrid:'../ng-grid.min'
+        uiGrid:'../ui-grid.min'
     },
     shim: {
         jquery: {
@@ -20,9 +20,9 @@ require.config({
             deps: ['angular'],
             exports: 'angularRouter'
         },
-        angularGrid: {
+        uiGrid: {
             deps: ['angular', 'jquery'],
-            exports: 'angularGrid'
+            exports: 'uiGrid'
         }
     }
 });

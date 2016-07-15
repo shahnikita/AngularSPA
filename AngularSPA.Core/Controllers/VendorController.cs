@@ -23,7 +23,7 @@ namespace AngularSPA.Core.Controllers
             _componentContext = componentContext;
         }
 
-        public JsonResult GetAllVendor()
+        public JsonResult GetAllVendor(int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
         {
             IList<Vendor> vendorList = null;
             try

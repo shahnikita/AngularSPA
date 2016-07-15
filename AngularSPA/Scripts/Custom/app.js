@@ -11,12 +11,14 @@ var apiPaths = {
 
 define(['angular'
          ,'angularRoute'
-         ,'jquery'
+         , 'jquery'
+         //, 'uiGrid'
          ,'directives/loading'
-         ,'services/routeResolver'
-], function (angular, angularRoute, $, loadingDir, routResolver) {
+         , 'services/routeResolver'
+         , 'filters/rangeFilter'
+], function (angular, angularRoute, $, loadingDir, routResolver, rangeFilter) {
     // create the module and name it adminApp
-    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective']);
+    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective', 'Range']);
    
     // configure our routes
     adminApp.config(['$routeProvider', 'routeResolverProvider', '$controllerProvider',
