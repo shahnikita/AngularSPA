@@ -13,12 +13,13 @@ define(['angular'
          ,'angularRoute'
          , 'jquery'
          //, 'uiGrid'
-         ,'directives/loading'
+         , 'directives/loading'
+          , 'directives/anchorPrevent'
          , 'services/routeResolver'
          , 'filters/rangeFilter'
-], function (angular, angularRoute, $, loadingDir, routResolver, rangeFilter) {
+], function (angular, angularRoute, $, loadingDir, anchorPrevent, routResolver, rangeFilter) {
     // create the module and name it adminApp
-    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective', 'Range']);
+    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective','AnchorPreventDirective', 'Range']);
    
     // configure our routes
     adminApp.config(['$routeProvider', 'routeResolverProvider', '$controllerProvider',

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Dynamic;
 
 namespace AngularSPA.Core.Lib
 {
@@ -49,17 +50,48 @@ namespace AngularSPA.Core.Lib
 
         #endregion
 
-        public List<Vendor> GetAll()
+        public PagedList<Vendor> GetAll()
         {
             try
             {
-                List<Vendor> vendors = new List<Vendor>();
+                PagedList<Vendor> vendors = new PagedList<Vendor>();
                 using (var vendorContext = _componentContext.Resolve<IDataRepository<Vendor>>())
                 {
-                    vendors = vendorContext.GetAll().ToList();
+                    vendors.Content = vendorContext.GetAll().ToList();
 
                 }
                 return vendors;
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return null;
+        }
+
+        public PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        {
+            try
+            {
+                IEnumerable<Vendor> vendors;
+                using (var vendorContext = _componentContext.Resolve<IDataRepository<Vendor>>())
+                {
+                    vendors = vendorContext.GetAll();
+                    if (vendors.Any())
+                    {
+                        if (!string.IsNullOrWhiteSpace(searchtext))
+                            vendors = vendors.Where(x => x.VendorName.Contains(searchtext));
+                        PagedList<Vendor> vendorsPageList = new PagedList<Vendor>()
+                        {
+                            PageSize = pageSize,
+                            CurrentPage = page,
+                            TotalRecords = vendors.Count()
+                        };
+                        vendorsPageList.Content = vendors.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                        return vendorsPageList;
+                    }
+
+                }
             }
             catch (Exception ex)
             {

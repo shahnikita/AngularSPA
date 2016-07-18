@@ -23,13 +23,13 @@ namespace AngularSPA.Core.Controllers
             _componentContext = componentContext;
         }
 
-        public JsonResult GetAllVendor(int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        public JsonResult GetAllVendor(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
         {
-            IList<Vendor> vendorList = null;
+            PagedList<Vendor> vendorList = null;
             try
             {
                 var vendorContext = _componentContext.Resolve<VendorLib>();
-                vendorList = vendorContext.GetAll();
+                vendorList = vendorContext.GetAll(searchtext, page , pageSize, sortBy,sortDirection);
 
             }
             catch (Exception ex)

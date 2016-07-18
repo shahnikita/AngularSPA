@@ -54,3 +54,4 @@ E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\System.Net.Http.Form
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.csprojResolveAssemblyReference.cache
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\obj\Debug\AngularSPA.Core.pdb
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.Core\bin\Debug\System.Linq.Dynamic.dll

@@ -175,3 +175,4 @@ E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\log4net.xml
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.Web.csprojResolveAssemblyReference.cache
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.pdb
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\System.Linq.Dynamic.dll

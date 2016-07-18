@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AngularSPAContext.cs" />
+    <Compile Include="Models\PagedList.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />

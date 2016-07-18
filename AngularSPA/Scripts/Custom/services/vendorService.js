@@ -5,16 +5,16 @@ define(['app'], function (app) {
     var VendorService = function ($http) {
 
         //The function to read all Vendors
-        this.getVendors = function (searchtext, page, pageSize, sortBy, sortDirection) {
+        this.getVendors = function (gridOptions) {
             return $http({
                 method: 'GET',
                 url: apiPaths.getAllVendor,
                 params: {
-                    searchtext: searchtext,
-                    page: page,
-                    pageSize: pageSize,
-                    sortBy: sortBy,
-                    sortDirection: sortDirection
+                    searchtext: gridOptions.search,
+                    page: gridOptions.pageNumber,
+                    pageSize: gridOptions.pageSize,
+                    sortBy: gridOptions.sortBy,
+                    sortDirection: gridOptions.sortDirection?'desc':'asc'
                 },
             });
         };

@@ -295,6 +295,7 @@
     <Content Include="Scripts\Custom\controllers\homeController.js" />
     <Content Include="Scripts\Custom\controllers\productController.js" />
     <Content Include="Scripts\Custom\controllers\vendorController.js" />
+    <Content Include="Scripts\Custom\directives\anchorPrevent.js" />
     <Content Include="Scripts\Custom\directives\loading.js" />
     <Content Include="Scripts\Custom\filters\rangeFilter.js" />
     <Content Include="Scripts\Custom\services\routeResolver.js" />
