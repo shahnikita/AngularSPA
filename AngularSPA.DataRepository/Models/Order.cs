@@ -14,11 +14,14 @@ namespace AngularSPA.DataRepository.Models
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
-        public string ProductQuantity { get; set; }
+        public byte OrderStatusId { get; set; }
+        public int ProductQuantity { get; set; }
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
         [ForeignKey("ProductId")]
         public Product Product { get; set; }
+        [ForeignKey("OrderStatusId")]
+        public OrderStatus OrderStatus { get; set; }
     }
 }

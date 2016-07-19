@@ -72,7 +72,7 @@ define(['app'], function (app) {
             if ($scope.vendorForm.$valid) {
                 var promise = vendorService.addupdateVendor($scope.vendor);
                 promise.then(function (resp) {
-                    loadVendors();
+                    $scope.loadVendors();
                     $scope.formToggle();
                 }, function (err) {
                     $scope.message = "Call Failed " + err.status;
