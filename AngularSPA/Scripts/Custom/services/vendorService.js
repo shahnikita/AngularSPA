@@ -1,6 +1,12 @@
 ﻿'use strict';
 define(['app'], function (app) {
-
+     
+    var apiPaths = {
+        addupdateVendor: "/vendor/InsertUpdateVendor/",
+        getVendor: "/vendor/GetVendor/",
+        getAllVendor: '/Vendor/GetAllVendor',
+        deleteVendor: "/vendor/DeleteVendor/"
+    };
     var injectParams = ['$http'];
     var VendorService = function ($http) {
 

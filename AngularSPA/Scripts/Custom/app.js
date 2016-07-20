@@ -2,17 +2,10 @@
 
 
 
-var apiPaths = {
-    addupdateVendor: "/vendor/InsertUpdateVendor/",
-    getVendor: "/vendor/GetVendor/",
-    getAllVendor: '/vendor/GetAllVendor',
-    deleteVendor: "/vendor/DeleteVendor/"
-};
 
 define(['angular'
          ,'angularRoute'
          , 'jquery'
-         //, 'uiGrid'
          , 'directives/loading'
           , 'directives/anchorPrevent'
          , 'services/routeResolver'

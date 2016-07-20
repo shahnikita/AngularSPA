@@ -9,7 +9,7 @@ define(['angular'], function (angular) {
         };
 
         this.routeConfig = function () {
-            var viewsDirectory = 'pages/',
+            var viewsDirectory = '../Html/pages/',
                 controllersDirectory = 'controllers/',
                 servicesDirectory = 'services/',
 
