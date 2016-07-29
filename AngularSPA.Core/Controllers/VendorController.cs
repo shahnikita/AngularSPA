@@ -1,4 +1,5 @@
 ﻿using AngularSPA.Core.Lib;
+using AngularSPA.DataRepository.Lib;
 using AngularSPA.DataRepository.Models;
 using AngularSPA.Util.GlobalUtils;
 using Autofac;
@@ -7,29 +8,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Web.Mvc;
 
 namespace AngularSPA.Core.Controllers
 {
-    public class VendorController : Controller
+    public class VendorController : AdminController
     {
         #region "Private variables"
-        private readonly IComponentContext _componentContext;
+        private readonly IVendorLib _vendorRepository;
         #endregion
 
-        public VendorController(IComponentContext componentContext)
+        public VendorController(IVendorLib vendorRepository)
         {
-            _componentContext = componentContext;
+            _vendorRepository = vendorRepository;
         }
 
-        public JsonResult GetAllVendor(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        public JsonResult GetAllVendor()
+        {
+            IList<Vendor> vendorList = null;
+            try
+            {
+                vendorList = _vendorRepository.GetAll().Content;
+
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+
+            return Json(vendorList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAllVendorPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
         {
             PagedList<Vendor> vendorList = null;
             try
             {
-                var vendorContext = _componentContext.Resolve<VendorLib>();
-                vendorList = vendorContext.GetAll(searchtext, page , pageSize, sortBy,sortDirection);
+                vendorList = _vendorRepository.GetAll(searchtext, page, pageSize, sortBy, sortDirection);
 
             }
             catch (Exception ex)
@@ -48,13 +63,8 @@ namespace AngularSPA.Core.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var vendorContext = _componentContext.Resolve<VendorLib>();
-
-
                     vendorID =
-                        vendorContext.InsertUpdate(item);
-
-
+                        _vendorRepository.InsertUpdate(item);
                 }
             }
             catch (Exception ex)
@@ -69,8 +79,8 @@ namespace AngularSPA.Core.Controllers
             Vendor vendor = null;
             try
             {
-                var vendorContext = _componentContext.Resolve<VendorLib>();
-                vendor = vendorContext.Get(id);
+
+                vendor = _vendorRepository.Get(id);
 
             }
             catch (Exception ex)
@@ -86,8 +96,8 @@ namespace AngularSPA.Core.Controllers
             int vendorID = 0;
             try
             {
-                var vendorContext = _componentContext.Resolve<VendorLib>();
-                vendorID = vendorContext.Delete(id);
+
+                vendorID = _vendorRepository.Delete(id);
 
             }
             catch (Exception ex)
@@ -95,7 +105,7 @@ namespace AngularSPA.Core.Controllers
                 GlobalUtil.HandleAndLogException(ex, this);
             }
 
-            return Json(vendorID!=0, JsonRequestBehavior.AllowGet);
+            return Json(vendorID != 0, JsonRequestBehavior.AllowGet);
         }
     }
 }

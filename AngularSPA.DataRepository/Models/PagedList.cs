@@ -9,7 +9,7 @@ namespace AngularSPA.DataRepository.Models
     public class PagedList<T> where T : class
     {
 
-        public IList<T> Content { get; set; }
+        public List<T> Content { get; set; }
 
         private int _currentPage { get; set; }
         public int CurrentPage

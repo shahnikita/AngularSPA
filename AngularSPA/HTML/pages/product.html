@@ -3,7 +3,167 @@
         <div class="col-lg-12">
             <h1 class="page-header">{{message}}</h1>
         </div>
-        <!-- /.col-lg-12 -->
+
     </div>
-    <!-- /.row -->
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-6">
+                        <div class="dataTable_wrapper">
+                            <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="dataTables_length">
+                                            <label>
+                                                Show
+                                                   <select class="form-control input-sm"
+                                                       style="display: inline;"
+                                                       data-ng-model="gridOptions.pageSize"
+                                                       data-ng-options="page as page for page in gridOptions.pageOptions"
+                                                       data-ng-change="gridOptions.load()">
+                                                   </select>
+                                                entries</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="dataTables_filter">
+                                            <form data-ng-submit="gridOptions.load()" name="productSearch">
+                                                <input type="text" class="form-control input-sm" placeholder="Search" name="Search" data-ng-model="gridOptions.search">
+                                                <button type="submit" class="btn btn-default btn-sm" data-ng-click="gridOptions.load()">Search</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="table-responsive" data-ng-if="gridOptions.totalItems>0">
+
+                                        <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='ProductId'?
+                                                gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
+                                                :'sorting'"
+                                                        data-ng-click="gridOptions.changeSorting('ProductId')">Id</th>
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='ProductName'?
+                                                gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
+                                                :'sorting'"
+                                                        data-ng-click="gridOptions.changeSorting('ProductName')">Name</th>
+
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='VendorId'?
+                                                gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
+                                                :'sorting'"
+                                                        data-ng-click="gridOptions.changeSorting('VendorId')">Vendor Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-ng-repeat="item in gridOptions.data">
+                                                <tr>
+                                                    <td>{{item.ProductId}}</td>
+                                                    <td>{{item.ProductName}}</td>
+                                                    <td>{{item.Vendor.VendorName}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-circle" data-ng-click="edit(item.ProductId)">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        &nbsp;&nbsp;
+                                      <button type="button" class="btn btn-danger btn-circle" data-ng-click="delete(item.ProductId)">
+                                          <i class="fa fa-trash"></i>
+                                      </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive" data-ng-if="gridOptions.totalItems<=0">
+                                        No Records.
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous"
+                                                    data-ng-class="(gridOptions.pageNumber-1)>0?  '':'disabled'"
+                                                    data-ng-click="gridOptions.previousPage()">
+                                                    <a href="#">Previous</a>
+                                                </li>
+                                                <li class="paginate_button"
+                                                    data-ng-repeat="n in [] | range:gridOptions.getTotalPages()"
+                                                    data-ng-class="gridOptions.pageNumber == n? 'active' : ''"
+                                                    data-ng-click="gridOptions.changePageNumber(n)">
+                                                    <a href="#">{{n}}
+                                                    </a>
+                                                </li>
+                                                <li class="paginate_button next"
+                                                    data-ng-class="(gridOptions.pageNumber+1)>gridOptions.getTotalPages()?  'disabled':''"
+                                                    data-ng-click="gridOptions.nextPage()">
+                                                    <a href="#">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="panel">
+                            <div class="panel-body">
+                                <button type="button" class="btn btn-success" data-ng-click="formToggle()">ADD</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel" data-ng-show="isDisplayForm">
+                                <form name="productForm" ng-submit="insert()" novalidate>
+
+                                    <!--ID-->
+                                    <input type="hidden" name="ProductId" ng-model="product.ProductId" />
+
+                                    <!-- NAME -->
+                                    <div class="form-group" ng-class="{ 'has-error' : productForm.ProductName.$invalid && !productForm.ProductName.$pristine }">
+                                        <label>Name</label>
+                                        <input type="text" name="ProductName" class="form-control" data-ng-model="product.ProductName" required data-ng-minlength="3" data-ng-maxlength="30">
+                                        <p class="help-block" ng-show="productForm.ProductName.$dirty && productForm.ProductName.$error.minlength">Too short!</p>
+                                        <p class="help-block" ng-show="productForm.ProductName.$dirty && productForm.ProductName.$error.maxlength">Too long!</p>
+                                        <p class="help-block" ng-show="productForm.ProductName.$dirty && productForm.ProductName.$error.required">Required!</p>
+                                    </div>
+
+                                    <!-- VENDOR ID-->
+                                    <div class="form-group" ng-class="{ 'has-error' : productForm.VendorId.$invalid && !productForm.VendorId.$pristine }">
+                                        <label>Name</label>
+                                        <select class="form-control"
+                                            name="VendorId" convert-to-number
+                                            data-ng-model="product.VendorId"
+                                            required="required">
+                                            <option value="">--Select--</option>
+                                            <option data-ng-repeat="option in Vendors" value="{{option.VendorId}}">{{option.VendorName}}</option>
+                                        </select>
+                                        <p class="help-block" data-ng-show="productForm.VendorId.$dirty && productForm.VendorId.$error.required">Required!</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="productForm.$invalid ||(!productForm.$dirty)">Submit</button>
+                                    <button type="button" class="btn btn-default" data-ng-click="formToggle()">Cancel</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
+

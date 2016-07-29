@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\IProductLib.cs" />
+    <Compile Include="Lib\IVendorLib.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AngularSPAContext.cs" />
     <Compile Include="Models\OrderStatus.cs" />

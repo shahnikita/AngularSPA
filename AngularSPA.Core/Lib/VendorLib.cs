@@ -1,4 +1,5 @@
-﻿using AngularSPA.DataRepository.Models;
+﻿
+using AngularSPA.DataRepository.Models;
 using AngularSPA.DataRepository.Repository;
 using AngularSPA.Util.GlobalUtils;
 using Autofac;
@@ -8,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
+using AngularSPA.DataRepository.Lib;
 
 namespace AngularSPA.Core.Lib
 {
-    public class VendorLib
+    public class VendorLib:IVendorLib
     {
         #region "Private Variables"
         private IComponentContext _componentContext;

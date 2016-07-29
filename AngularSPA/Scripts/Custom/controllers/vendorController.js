@@ -1,85 +1,47 @@
 ﻿
-define(['app'], function (app) {
+define(['app', '../models/gridModel'], function (app) {
 
-    var injectParams = ['$scope', 'vendorService'];
+    var injectParams = ['$scope', 'vendorService', 'gridModel'];
 
-    var VendorController = function ($scope, vendorService) {
+    var VendorController = function ($scope, vendorService, gridModel) {
         $scope.message = 'Vendor Page';
         $scope.isDisplayForm = false;
-
-
-        $scope.gridOptions = {
-            data: null,
-            pageSize: 5,
-            pageNumber: 1,
-            pageOptions: [5, 10, 20, 50, 100, 200],
-            totalItems: 0,
-            sortBy: 'VendorId',
-            sortDirection: false,//bit
-            search: null,
-            getTotalPages: function () {
-                return Math.ceil(this.totalItems / this.pageSize);
-            },
-            nextPage: function () {
-                if (this.pageNumber < this.getTotalPages()) {
-                    this.pageNumber++;
-                    $scope.load();
-                }
-            },
-            previousPage: function () {
-                if (this.pageNumber > 1) {
-                    this.pageNumber--;
-                    $scope.load();
-                }
-            },
-            //sortDirectionOptions:["asc","desc"],
-        }
-
-        $scope.loadVendors = function () {
-            var promise = vendorService.getVendors($scope.gridOptions);
-            promise.then(function (resp) {
-                $scope.gridOptions.data = resp.data.Content;
-                $scope.gridOptions.totalItems = resp.data.TotalRecords;
-            }, function (err) {
-                $scope.message = "Call Failed " + err.status;
-
-            });
+        $scope.gridOptions = gridModel;
+        $scope.gridOptions.sortBy = 'VendorId';
+        $scope.gridOptions.load = function () {
+            $scope.gridOptions = vendorService.getVendors(this);
         };
 
-        $scope.changePageNumber = function (n) {
-            $scope.gridOptions.pageNumber = n;
-            $scope.loadVendors();
-        }
+        $scope.gridOptions.load();
 
-        $scope.changeSorting = function (sort) {
-            $scope.gridOptions.sortBy = sort;
-            $scope.gridOptions.sortDirection = $scope.gridOptions.sortDirection != null ? !$scope.gridOptions.sortDirection : false;
-            $scope.loadVendors();
-        }
-
-        $scope.loadVendors();
-
-
-
-
-        // Function to add toggle behaviour to form
+        // Function to add toggle behaviour to form.
         $scope.formToggle = function () {
             $scope.isDisplayForm = $scope.isDisplayForm ? false : true;
             $scope.vendor = {};
             $scope.vendorForm.$setPristine();
         }
+
+        //post back function to add/update vendor.
         $scope.insert = function () {
             if ($scope.vendorForm.$valid) {
-                var promise = vendorService.addupdateVendor($scope.vendor);
-                promise.then(function (resp) {
-                    $scope.loadVendors();
-                    $scope.formToggle();
-                }, function (err) {
-                    $scope.message = "Call Failed " + err.status;
-                });
+                if ($scope.vendorForm.$dirty) {
+                    var promise = vendorService.addupdateVendor($scope.vendor);
+                    promise.then(function (resp) {
+                        $scope.gridOptions.load();
+                        $scope.formToggle();
+                    }, function (err) {
+                        $scope.message = "Call Failed " + err.status;
+                    });
 
+                }
+                else {
+                    $scope.formToggle();
+                }
             }
+
         }
+
+        //get funtion to get vendor info for edit.
         $scope.edit = function (id) {
             var promise = vendorService.getVendor(id);
             promise.then(function (resp) {
@@ -93,11 +55,12 @@ define(['app'], function (app) {
 
         }
 
+        //Delete vendor 
         $scope.delete = function (id) {
             var promise = vendorService.deleteVendor(id);
             promise.then(function (resp) {
                 if (resp.data) {
-                    loadVendors();
+                    $scope.gridOptions.load();
                     $scope.formToggle();
                     $scope.isDisplayForm = false;
                 }
@@ -107,8 +70,8 @@ define(['app'], function (app) {
 
         }
 
-       
-     
+
+
 
     };
     VendorController.$inject = injectParams;

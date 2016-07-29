@@ -36,7 +36,7 @@ define(['angular'
 
               $routeProvider
                   .when('/vendor', route.resolve('vendor','','vendor'))
-                  .when('/product', route.resolve('product'))
+                  .when('/product', route.resolve('product','','product'))
                   .when('/', route.resolve('home'))
                   .otherwise({ redirectTo: '/home' });
 

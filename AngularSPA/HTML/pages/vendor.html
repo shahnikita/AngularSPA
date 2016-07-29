@@ -25,16 +25,16 @@
                                                        style="display: inline;"
                                                        data-ng-model="gridOptions.pageSize"
                                                        data-ng-options="page as page for page in gridOptions.pageOptions"
-                                                       data-ng-change="loadVendors()">
+                                                       data-ng-change="gridOptions.load()">
                                                    </select>
                                                 entries</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="dataTables_filter">
-                                            <form data-ng-submit="loadVendors()" name="vendorSearch">
+                                            <form data-ng-submit="gridOptions.load()" name="vendorSearch">
                                                 <input type="text" class="form-control input-sm" placeholder="Search" name="Search" data-ng-model="gridOptions.search">
-                                                <button type="submit" class="btn btn-default btn-sm" data-ng-click="loadVendors()">Search</button>
+                                                <button type="submit" class="btn btn-default btn-sm" data-ng-click="gridOptions.load()">Search</button>
 
                                             </form>
                                             
@@ -51,11 +51,11 @@
                                                     <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='VendorId'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'"
-                                                        data-ng-click="changeSorting('VendorId')">Id</th>
+                                                        data-ng-click="gridOptions.changeSorting('VendorId')">Id</th>
                                                     <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='VendorName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'"
-                                                        data-ng-click="changeSorting('VendorName')">Name</th>
+                                                        data-ng-click="gridOptions.changeSorting('VendorName')">Name</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -89,19 +89,19 @@
                                             <ul class="pagination">
                                                 <li class="paginate_button previous"
                                                     data-ng-class="(gridOptions.pageNumber-1)>0?  '':'disabled'"
-                                                    data-ng-click="changePageNumber(gridOptions.pageNumber-1)">
+                                                    data-ng-click="gridOptions.previousPage()">
                                                     <a href="#">Previous</a>
                                                 </li>
                                                 <li class="paginate_button"
                                                     data-ng-repeat="n in [] | range:gridOptions.getTotalPages()"
                                                     data-ng-class="gridOptions.pageNumber == n? 'active' : ''"
-                                                    data-ng-click="changePageNumber(n)">
+                                                    data-ng-click="gridOptions.changePageNumber(n)">
                                                     <a href="#">{{n}}
                                                     </a>
                                                 </li>
                                                 <li class="paginate_button next"
                                                     data-ng-class="(gridOptions.pageNumber+1)>gridOptions.getTotalPages()?  'disabled':''"
-                                                    data-ng-click="changePageNumber(gridOptions.pageNumber+1)">
+                                                    data-ng-click="gridOptions.nextPage()">
                                                     <a href="#">Next</a></li>
                                             </ul>
                                         </div>
@@ -129,13 +129,13 @@
                                     <div class="form-group" ng-class="{ 'has-error' : vendorForm.VendorName.$invalid && !vendorForm.VendorName.$pristine }">
                                         <label>Name</label>
                                         <input type="text" name="VendorName" class="form-control" ng-model="vendor.VendorName" required data-ng-minlength="3" data-ng-maxlength="30">
-                                        <p class="help-block" ng-show="vendorForm.VendorName.$error.minlength">Too short!</p>
-                                        <p class="help-block" ng-show="vendorForm.VendorName.$error.maxlength">Too long!</p>
-                                        <p class="help-block" ng-show="vendorForm.VendorName.$error.required">Required!</p>
+                                        <p class="help-block" ng-show="vendorForm.VendorName.$dirty && vendorForm.VendorName.$error.minlength">Too short!</p>
+                                        <p class="help-block" ng-show="vendorForm.VendorName.$dirty && vendorForm.VendorName.$error.maxlength">Too long!</p>
+                                        <p class="help-block" ng-show="vendorForm.VendorName.$dirty && vendorForm.VendorName.$error.required">Required!</p>
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-primary" ng-disabled="vendorForm.$invalid">Submit</button>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="vendorForm.$invalid||(!vendorForm.$dirty)">Submit</button>
                                     <button type="button" class="btn btn-default" data-ng-click="formToggle()">Cancel</button>
                                 </form>
 
