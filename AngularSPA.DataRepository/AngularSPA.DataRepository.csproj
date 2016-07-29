@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\ICustomerLib.cs" />
     <Compile Include="Lib\IProductLib.cs" />
     <Compile Include="Lib\IVendorLib.cs" />
     <Compile Include="Migrations\Configuration.cs" />

@@ -54,10 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
+    <Compile Include="Lib\CustomerLib.cs" />
     <Compile Include="Lib\OrderLib.cs" />
     <Compile Include="Lib\ProductLib.cs" />
     <Compile Include="Lib\VendorLib.cs" />

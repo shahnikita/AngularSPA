@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AngularSPA.Core.Controllers
 {
-    public class VendorController : AdminController
+    public class VendorController : Controller
     {
         #region "Private variables"
         private readonly IVendorLib _vendorRepository;

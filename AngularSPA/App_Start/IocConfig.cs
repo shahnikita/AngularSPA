@@ -30,6 +30,7 @@ namespace AngularSPA.App_Start
                 /*Register Libs Files Here*/
                 containerBuilder.RegisterType<VendorLib>().As<IVendorLib>();
                 containerBuilder.RegisterType<ProductLib>().As<IProductLib>();
+                containerBuilder.RegisterType<CustomerLib>().As<ICustomerLib>();
 
                 //Register Database Configuration
                 containerBuilder.RegisterType(typeof(DatabaseConfig)).InstancePerDependency();

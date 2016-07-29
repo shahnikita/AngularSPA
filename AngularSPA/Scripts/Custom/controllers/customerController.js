@@ -1,15 +1,16 @@
 ﻿
 define(['app', '../models/gridModel'], function (app) {
 
-    var injectParams = ['$scope', 'vendorService', 'gridModel'];
+    var injectParams = ['$scope', 'CustomerService', 'gridModel'];
 
-    var VendorController = function ($scope, vendorService, gridModel) {
-        $scope.message = 'Vendor Page';
+    var CustomerController = function ($scope, customerService, gridModel) {
+        $scope.message = 'Customer Page';
         $scope.isDisplayForm = false;
         $scope.gridOptions = gridModel;
-        $scope.gridOptions.sortBy = 'VendorId';
+        $scope.gridOptions.sortBy = 'CustomerId';
+
         $scope.gridOptions.load = function () {
-            $scope.gridOptions = vendorService.getVendors(this);
+            $scope.gridOptions = customerService.getCustomers(this);
         };
 
         $scope.gridOptions.load();
@@ -17,15 +18,15 @@ define(['app', '../models/gridModel'], function (app) {
         // Function to add toggle behaviour to form.
         $scope.formToggle = function () {
             $scope.isDisplayForm = $scope.isDisplayForm ? false : true;
-            $scope.vendor = {};
-            $scope.vendorForm.$setPristine();
+            $scope.customer = {};
+            $scope.customerForm.$setPristine();
         }
 
         //post back function to add/update vendor.
         $scope.insert = function () {
-            if ($scope.vendorForm.$valid) {
-                if ($scope.vendorForm.$dirty) {
-                    var promise = vendorService.addupdateVendor($scope.vendor);
+            if ($scope.customerForm.$valid) {
+                if ($scope.customerForm.$dirty) {
+                    var promise = customerService.addupdateCustomer($scope.customer);
                     promise.then(function (resp) {
                         $scope.gridOptions.load();
                         $scope.formToggle();
@@ -41,13 +42,13 @@ define(['app', '../models/gridModel'], function (app) {
 
         }
 
-        //get funtion to get vendor info for edit.
+        //get funtion to get customer info for edit.
         $scope.edit = function (id) {
-            var promise = vendorService.getVendor(id);
+            var promise = customerService.getCustomer(id);
             promise.then(function (resp) {
                 $scope.isDisplayForm = true;
-                $scope.vendor = resp.data;
-                $scope.vendorForm.$setPristine();
+                $scope.customer = resp.data;
+                $scope.customerForm.$setPristine();
 
             }, function (err) {
                 $scope.message = "Call Failed " + err.status;
@@ -55,9 +56,9 @@ define(['app', '../models/gridModel'], function (app) {
 
         }
 
-        //Delete vendor 
+        //Delete customer 
         $scope.delete = function (id) {
-            var promise = vendorService.deleteVendor(id);
+            var promise = customerService.deleteCustomer(id);
             promise.then(function (resp) {
                 if (resp.data) {
                     $scope.gridOptions.load();
@@ -74,9 +75,9 @@ define(['app', '../models/gridModel'], function (app) {
 
 
     };
-    VendorController.$inject = injectParams;
+    CustomerController.$inject = injectParams;
 
-    app.register.controller('vendorController', VendorController);
+    app.register.controller('customerController', CustomerController);
 
 });
 

@@ -244,8 +244,11 @@
     <Content Include="Content\ui-grid.css" />
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
+    <Content Include="HTML\pages\customer.html" />
+    <Content Include="Scripts\Custom\controllers\customerController.js" />
     <Content Include="Scripts\Custom\directives\convertToNumber.js" />
     <Content Include="Scripts\Custom\models\gridModel.js" />
+    <Content Include="Scripts\Custom\services\customerService.js" />
     <Content Include="Scripts\Custom\services\productService.js" />
     <Content Include="Views\favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />

@@ -1,32 +1,29 @@
-﻿
+﻿using AngularSPA.DataRepository.Lib;
 using AngularSPA.DataRepository.Models;
 using AngularSPA.DataRepository.Repository;
 using AngularSPA.Util.GlobalUtils;
-using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq.Dynamic;
-using AngularSPA.DataRepository.Lib;
 
 namespace AngularSPA.Core.Lib
 {
-    public class VendorLib : IVendorLib
+    public class CustomerLib : ICustomerLib
     {
-        #region "Private Variables"
-        private IDataRepository<Vendor> _vendorContext;
-        #endregion
 
+
+        #region "Private Variables"
+        private IDataRepository<Customer> _customerContext;
+        #endregion
         #region "Constructor & Destructor"
         /// <summary>
         /// Public Constructor.
         /// </summary>
         /// <param name="componentContext"></param>
-        public VendorLib(IDataRepository<Vendor> vendorRepo)
+        public CustomerLib(IDataRepository<Customer> customerRepo)
         {
-            _vendorContext = vendorRepo;
+            _customerContext = customerRepo;
         }
         #endregion
 
@@ -52,13 +49,13 @@ namespace AngularSPA.Core.Lib
 
         #endregion
 
-        public PagedList<Vendor> GetAll()
+
+        public PagedList<Customer> GetAll()
         {
             try
             {
-                PagedList<Vendor> vendors = new PagedList<Vendor>() { Content = _vendorContext.GetAll().ToList() };
-
-                return vendors;
+                PagedList<Customer> customer = new PagedList<Customer>() { Content = _customerContext.GetAll().ToList() };
+                return customer;
             }
             catch (Exception ex)
             {
@@ -67,23 +64,22 @@ namespace AngularSPA.Core.Lib
             return null;
         }
 
-        public PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        public PagedList<Customer> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerId", string sortDirection = "asc")
         {
             try
             {
-                IEnumerable<Vendor> vendors;
-                vendors = _vendorContext.GetAll();
+                IEnumerable<Customer> customers;
+                customers = _customerContext.GetAll();
                 if (!string.IsNullOrWhiteSpace(searchtext))
-                    vendors = vendors.Where(x => x.VendorName.Contains(searchtext));
-                PagedList<Vendor> vendorsPageList = new PagedList<Vendor>()
+                    customers = customers.Where(x => x.CustomerName.Contains(searchtext));
+                PagedList<Customer> customerPageList = new PagedList<Customer>()
                 {
                     PageSize = pageSize,
                     CurrentPage = page,
-                    TotalRecords = vendors.Count()
+                    TotalRecords = customers.Count()
                 };
-                vendorsPageList.Content = vendors.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                return vendorsPageList;
-
+                customerPageList.Content = customers.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return customerPageList;
             }
             catch (Exception ex)
             {
@@ -92,12 +88,12 @@ namespace AngularSPA.Core.Lib
             return null;
         }
 
-        public Vendor Get(int id)
+        public Customer Get(int id)
         {
             try
             {
-                Vendor vendor = _vendorContext.GetById(id);
-                return vendor;
+                Customer customer = _customerContext.GetById(id);
+                return customer;
             }
             catch (Exception ex)
             {
@@ -106,15 +102,13 @@ namespace AngularSPA.Core.Lib
             return null;
         }
 
-        public int InsertUpdate(Vendor v)
+        public int InsertUpdate(Customer customer)
         {
             try
             {
-                v = v.VendorId == 0 ? _vendorContext.Add(v) : _vendorContext.Update(v);
-                _vendorContext.SaveChanges();
-
-
-                return v.VendorId;
+                customer = customer.CustomerId == 0 ? _customerContext.Add(customer) : _customerContext.Update(customer);
+                _customerContext.SaveChanges();
+                return customer.CustomerId;
             }
             catch (Exception ex)
             {
@@ -127,9 +121,12 @@ namespace AngularSPA.Core.Lib
         {
             try
             {
-                _vendorContext.Delete(id);
-                _vendorContext.SaveChanges();
-                return id;
+                if (id != 0)
+                {
+                    _customerContext.Delete(id);
+                    _customerContext.SaveChanges();
+                    return id;
+                }
             }
             catch (Exception ex)
             {
@@ -137,6 +134,5 @@ namespace AngularSPA.Core.Lib
             }
             return 0;
         }
-
     }
 }
