@@ -13,6 +13,7 @@ namespace AngularSPA.DataRepository.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+          
         }
 
         protected override void Seed(AngularSPAContext context)

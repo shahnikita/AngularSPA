@@ -12,7 +12,6 @@ namespace AngularSPA.DataRepository.Models
 
         public int VendorId { get; set; }
         [Required]
-
         public string VendorName { get; set; }
     }
 }

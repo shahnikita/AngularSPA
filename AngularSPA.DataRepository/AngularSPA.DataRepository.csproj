@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\ICustomerLib.cs" />
+    <Compile Include="Lib\IOrderLib.cs" />
+    <Compile Include="Lib\IOrderStatusLib.cs" />
     <Compile Include="Lib\IProductLib.cs" />
     <Compile Include="Lib\IVendorLib.cs" />
     <Compile Include="Migrations\Configuration.cs" />

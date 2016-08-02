@@ -31,6 +31,8 @@ namespace AngularSPA.App_Start
                 containerBuilder.RegisterType<VendorLib>().As<IVendorLib>();
                 containerBuilder.RegisterType<ProductLib>().As<IProductLib>();
                 containerBuilder.RegisterType<CustomerLib>().As<ICustomerLib>();
+                containerBuilder.RegisterType<OrderStatusLib>().As<IOrderStatusLib>();
+                containerBuilder.RegisterType<OrderLib>().As<IOrderLib>();
 
                 //Register Database Configuration
                 containerBuilder.RegisterType(typeof(DatabaseConfig)).InstancePerDependency();

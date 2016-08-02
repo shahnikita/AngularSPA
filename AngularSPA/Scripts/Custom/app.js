@@ -35,9 +35,10 @@ define(['angular'
               var route = routeResolverProvider.route;
 
               $routeProvider
-                  .when('/vendor', route.resolve('vendor','','vendor'))
-                  .when('/product', route.resolve('product', '', 'product'))
-                  .when('/customer', route.resolve('customer', '', 'customer'))
+                  .when('/vendor', route.resolve('vendor'))
+                  .when('/product', route.resolve('product'))
+                  .when('/customer', route.resolve('customer'))
+                   .when('/orderStatus', route.resolve('orderStatus'))
                   .when('/', route.resolve('home'))
                   .otherwise({ redirectTo: '/home' });
 

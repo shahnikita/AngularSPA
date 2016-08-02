@@ -1,5 +1,5 @@
 ﻿
-define(['app', '../models/gridModel'], function (app) {
+define(['app', '../models/gridModel', '../services/vendorService'], function (app) {
 
     var injectParams = ['$scope', 'vendorService', 'gridModel'];
 

@@ -1,7 +1,7 @@
 ﻿
-define(['app', '../models/gridModel'], function (app) {
+define(['app', '../models/gridModel', '../services/customerService'], function (app) {
 
-    var injectParams = ['$scope', 'CustomerService', 'gridModel'];
+    var injectParams = ['$scope', 'customerService', 'gridModel'];
 
     var CustomerController = function ($scope, customerService, gridModel) {
         $scope.message = 'Customer Page';

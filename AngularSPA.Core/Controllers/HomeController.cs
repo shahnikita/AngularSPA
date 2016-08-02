@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using AngularSPA.DataRepository.Lib;
+using AngularSPA.DataRepository.Models;
+using AngularSPA.Util.GlobalUtils;
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +14,45 @@ namespace AngularSPA.Core.Controllers
     public class HomeController : Controller
     {
         #region "Private variables"
-        private readonly IComponentContext _componentContext;
+        private readonly IOrderLib _orderRepository;
         #endregion
 
-        public HomeController(IComponentContext componentContext)
+        public HomeController(IOrderLib orderRepository)
         {
-            _componentContext = componentContext;
+            _orderRepository = orderRepository;
         }
-        public ActionResult Index()
+        #region Public Variable"
+
+        public JsonResult GetAllOrderPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderId", string sortDirection = "asc")
         {
-            return View();
+            PagedList<Order> orderList = null;
+            try
+            {
+
+                orderList = _orderRepository.GetAll(searchtext, page, pageSize, sortBy, sortDirection);
+
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+
+            return Json(orderList, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetAllOrder()
+        {
+            IList<Order> ordertList = null;
+            try
+            {
+                ordertList = _orderRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return Json(ordertList, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace AngularSPA.DataRepository.Models
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
-        public byte OrderStatusId { get; set; }
+       public int OrderStatusId { get; set; }
         public int ProductQuantity { get; set; }
 
         [ForeignKey("CustomerId")]

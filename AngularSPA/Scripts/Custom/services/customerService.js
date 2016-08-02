@@ -62,7 +62,7 @@ define(['app'], function (app) {
     };
     customerService.$inject = injectParams;
 
-    app.register.service('CustomerService', customerService);
+    app.register.service('customerService', customerService);
 
 
 
