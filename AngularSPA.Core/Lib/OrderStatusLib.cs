@@ -49,24 +49,9 @@ namespace AngularSPA.Core.Lib
         }
 
         #endregion
-        public PagedList<OrderStatus> GetAll()
-        {
-            try
-            {
-                PagedList<OrderStatus> orderStatus = new PagedList<OrderStatus>()
-                {
-                    Content = _orderStatusContext.GetAll().ToList()
-                };
-                return orderStatus;
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-            return null;
-        }
+      
 
-        public PagedList<OrderStatus> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderStatusId", string sortDirection = "asc")
+        public PagedList<OrderStatus> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "OrderStatusId", string sortDirection = "asc")
         {
             try
             {
@@ -76,11 +61,15 @@ namespace AngularSPA.Core.Lib
                     orderStatus = orderStatus.Where(x => x.OrderStatusName.Contains(searchtext));
                 PagedList<OrderStatus> orderStatusPageList = new PagedList<OrderStatus>()
                 {
-                    PageSize = pageSize,
+                   
                     CurrentPage = page,
-                    TotalRecords = orderStatus.Count()
+                    TotalRecords = orderStatus.Count(),
+                    PageSize=pageSize
                 };
-                orderStatusPageList.Content = orderStatus.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+               
+                orderStatusPageList.Content = orderStatus
+                    .OrderBy(sortBy + " " + sortDirection)
+                    .Skip((page - 1) * orderStatusPageList.PageSize).Take(orderStatusPageList.PageSize).ToList();
                 return orderStatusPageList;
 
             }

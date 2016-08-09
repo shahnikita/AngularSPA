@@ -26,7 +26,7 @@ namespace AngularSPA.Core.Lib
         public OrderLib(IDataRepository<Order> orderContext
                         , ICustomerLib customerRepo
                         , IProductLib productRepo
-                        , IOrderStatusLib orderStatusRepo 
+                        , IOrderStatusLib orderStatusRepo
                         )
         {
             _orderContext = orderContext;
@@ -59,29 +59,24 @@ namespace AngularSPA.Core.Lib
         #endregion
 
 
-        public IList<Order> GetAll()
+        public int InsertUpdate(Order v)
         {
             try
             {
-                List<Order> order = new List<Order>();
-                order = _orderContext.GetAll().ToList();
-                order.ForEach(x =>
-                    {
-                        x.OrderStatus = _orderStatusRepo.Get(x.OrderStatusId);
-                        x.Product = _productRepo.Get(x.ProductId);
-                        x.Customer = _customerRepo.Get(x.CustomerId);
-                    });
-               
-                return order;
+                v = v.OrderId == 0 ? _orderContext.Add(v) : _orderContext.Update(v);
+                _orderContext.SaveChanges();
+
+
+                return v.OrderId;
             }
             catch (Exception ex)
             {
                 GlobalUtil.HandleAndLogException(ex, this);
             }
-            return null;
+            return 0;
         }
 
-        public PagedList<Order> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderId", string sortDirection = "asc")
+        public PagedList<Order> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "OrderId", string sortDirection = "asc")
         {
             try
             {
@@ -90,14 +85,22 @@ namespace AngularSPA.Core.Lib
                 if (!string.IsNullOrWhiteSpace(searchtext))
                     order = order.Where(x => x.Customer.CustomerName.Contains(searchtext)
                                              || x.OrderStatus.OrderStatusName.Contains(searchtext));
-                PagedList<Order> orderStatusPageList = new PagedList<Order>()
+                PagedList<Order> orderPageList = new PagedList<Order>()
                 {
-                    PageSize = pageSize,
                     CurrentPage = page,
-                    TotalRecords = order.Count()
+                    TotalRecords = order.Count(),
+                    PageSize = pageSize,
                 };
-                orderStatusPageList.Content = order.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-                return orderStatusPageList;
+                orderPageList.Content = order.OrderBy(sortBy + " " + sortDirection)
+                                        .Skip((page - 1) * orderPageList.PageSize).Take(orderPageList.PageSize).ToList();
+
+                orderPageList.Content.ForEach(x =>
+                {
+                    x.Product = _productRepo.Get(x.ProductId);
+                    x.Customer = _customerRepo.Get(x.CustomerId);
+                    x.OrderStatus = _orderStatusRepo.Get(x.OrderStatusId);
+                });
+                return orderPageList;
 
             }
             catch (Exception ex)
@@ -106,6 +109,40 @@ namespace AngularSPA.Core.Lib
             }
             return null;
         }
-    
+        public IList<OrderStatus> GetCountOrderByStatus()
+        {
+            IList<OrderStatus> count = null;
+            try
+            {
+                count = _orderContext.GetAll()
+                    .GroupBy(x => x.OrderStatus).ToList()
+                    .Select(x => new OrderStatus()
+                    {
+                        OrderCount = x.Count(),
+                        OrderStatusId = x.Key.OrderStatusId,
+                        OrderStatusName = x.Key.OrderStatusName
+                    }).ToList();
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return count;
+
+        }
+
+        public Order Get(int id)
+        {
+            Order order = null;
+            try {
+
+                order = _orderContext.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return order;
+        }
     }
 }

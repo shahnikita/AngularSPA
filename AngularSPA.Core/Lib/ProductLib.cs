@@ -15,7 +15,7 @@ namespace AngularSPA.Core.Lib
     {
         #region "Private Variables"
         private IDataRepository<Product> _productContext;
-        private IDataRepository<Vendor> _vendorContext;
+        private IVendorLib _vendorRepo;
         #endregion
 
         #region "Constructor"
@@ -23,10 +23,10 @@ namespace AngularSPA.Core.Lib
         /// Public Constructor.
         /// </summary>
         /// <param name="componentContext"></param>
-        public ProductLib(IDataRepository<Product> productRepo, IDataRepository<Vendor> vendorRepo)
+        public ProductLib(IDataRepository<Product> productRepo, IVendorLib vendorRepo)
         {
             _productContext = productRepo;
-            _vendorContext = vendorRepo;
+            _vendorRepo = vendorRepo;
         }
         #endregion
 
@@ -52,22 +52,9 @@ namespace AngularSPA.Core.Lib
 
         #endregion
 
-        public PagedList<Product> GetAll()
-        {
-            try
-            {
-                PagedList<Product> products = new PagedList<Product>();
-                products.Content = _productContext.GetAll().ToList();
-                return products;
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-            return null;
-        }
+    
 
-        public PagedList<Product> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "ProductId", string sortDirection = "asc")
+        public PagedList<Product> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "ProductId", string sortDirection = "asc")
         {
             try
             {
@@ -79,15 +66,16 @@ namespace AngularSPA.Core.Lib
                         products = products.Where(x => x.ProductName.Contains(searchtext));
                     PagedList<Product> productsPageList = new PagedList<Product>()
                     {
-                        PageSize = pageSize,
-                        CurrentPage = page,
-                        TotalRecords = products.Count()
+                        TotalRecords = products.Count(),
+                        CurrentPage = page   ,
+                        PageSize = pageSize
                     };
+                   
                     productsPageList.Content = products.OrderBy(sortBy + " " + sortDirection)
-                                                .Skip((page - 1) * pageSize)
-                                                .Take(pageSize)
+                                                .Skip((page - 1) * productsPageList.PageSize)
+                                                .Take(productsPageList.PageSize)
                                                 .ToList();
-                    productsPageList.Content.ForEach(x => x.Vendor = _vendorContext.GetById(x.VendorId));
+                    productsPageList.Content.ForEach(x => x.Vendor = _vendorRepo.Get(x.VendorId));
                     return productsPageList;
                 }
             }
@@ -104,7 +92,7 @@ namespace AngularSPA.Core.Lib
             {
                 Product product = new Product();
                 product = _productContext.GetById(id);
-                product.Vendor = _vendorContext.GetById(product.VendorId);
+                product.Vendor = _vendorRepo.Get(product.VendorId);
                 return product;
             }
             catch (Exception ex)

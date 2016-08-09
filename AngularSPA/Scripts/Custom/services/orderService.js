@@ -2,51 +2,58 @@
 define(['app'], function (app) {
 
     var apiPaths = {
-        //addupdateOrderStatus: "/Home/InsertUpdateOrderStatus/",
-        //getOrderStatus: "/Home/GetOrderStatus/",
-        getAllOrder: '/Home/GetAllOrder',
-        //paginationOrderStatus: '/Home/GetAllOrderStatusPagination',
+        addupdateOrder: "/Home/InsertUpdateOrder/",
+        getOrder: "/Home/GetOrder/",
+       
+        paginationOrders: '/Home/GetAllOrderPagination',
         //deleteOrderStatus: "/Home/DeleteOrderStatus/"
+        getCountOrderByStatus: '/Home/GetCountOrderByStatus',
     };
 
     var injectParams = ['$http'];
     var OrderService = function ($http) {
         //The function for pagination
-        //this.getOrderStatuses = function (gridOptions) {
-        //    return $http({
-        //        method: 'GET',
-        //        url: apiPaths.paginationOrderStatus,
-        //        params: {
-        //            searchtext: gridOptions.search,
-        //            page: gridOptions.pageNumber,
-        //            pageSize: gridOptions.pageSize,
-        //            sortBy: gridOptions.sortBy,
-        //            sortDirection: gridOptions.sortDirection ? 'desc' : 'asc'
-        //        },
-        //    });
-
-
-        //};
-
-        this.getAllOrder= function () {
+        this.getOrders = function (gridOptions) {
+            var paramObj = {};
+            if (gridOptions) {
+                paramObj =
+                {
+                    searchtext: gridOptions.search,
+                    page: gridOptions.pageNumber,
+                    pageSize: gridOptions.pageSize,
+                    sortBy: gridOptions.sortBy,
+                    sortDirection: gridOptions.sortDirection ? 'desc' : 'asc'
+                };
+            }
             return $http({
                 method: 'GET',
-                url: apiPaths.getAllOrder
+                url: apiPaths.paginationOrders,
+                params: paramObj,
+            });
+
+
+        };
+
+        
+
+        this.getCountOrderByStatus = function () {
+            return $http({
+                method: 'GET',
+                url: apiPaths.getCountOrderByStatus
             });
         }
+        //The function to insert/update Order
+        this.addupdateOrder = function (order) {
+            return $http({
+                method: 'POST',
+                url: apiPaths.addupdateOrder,
+                data: angular.toJson(order),  // pass in data as strings
+            });
+        };
+        this.getOrder = function (id) {
 
-        ////The function to insert/update OrderStatus
-        //this.addupdateOrderStatus = function (orderStatus) {
-        //    return $http({
-        //        method: 'POST',
-        //        url: apiPaths.addupdateOrderStatus,
-        //        data: angular.toJson(orderStatus),  // pass in data as strings
-        //    });
-        //};
-        //this.getOrderStatus = function (id) {
-
-        //    return $http.get(apiPaths.getOrderStatus + id);
-        //};
+            return $http.get(apiPaths.getOrder + id);
+        };
         //this.deleteOrderStatus = function (id) {
 
         //    return $http.get(apiPaths.deleteOrderStatus + id);

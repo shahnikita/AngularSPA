@@ -12,16 +12,20 @@ define(['app'], function (app) {
 
         //The function to read all Products
         this.getProducts = function (gridOptions) {
-            return $http({
-                method: 'GET',
-                url: apiPaths.getAllProduct,
-                params: {
+            var paramObj={};
+            if(gridOptions){
+                paramObj={
                     searchtext: gridOptions.search,
                     page: gridOptions.pageNumber,
                     pageSize: gridOptions.pageSize,
                     sortBy: gridOptions.sortBy,
                     sortDirection: gridOptions.sortDirection ? 'desc' : 'asc'
-                },
+                };
+            }
+            return $http({
+                method: 'GET',
+                url: apiPaths.getAllProduct,
+                params: paramObj,
             });
         };
 

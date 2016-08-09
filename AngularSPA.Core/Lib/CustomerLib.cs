@@ -50,19 +50,7 @@ namespace AngularSPA.Core.Lib
         #endregion
 
 
-        public PagedList<Customer> GetAll()
-        {
-            try
-            {
-                PagedList<Customer> customer = new PagedList<Customer>() { Content = _customerContext.GetAll().ToList() };
-                return customer;
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-            return null;
-        }
+      
 
         public PagedList<Customer> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerId", string sortDirection = "asc")
         {
@@ -78,7 +66,10 @@ namespace AngularSPA.Core.Lib
                     CurrentPage = page,
                     TotalRecords = customers.Count()
                 };
-                customerPageList.Content = customers.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                customerPageList.Content = customers
+                                .OrderBy(sortBy + " " + sortDirection)
+                                 .Skip((page - 1) * customerPageList.PageSize)
+                                 .Take(customerPageList.PageSize).ToList();
                 return customerPageList;
             }
             catch (Exception ex)

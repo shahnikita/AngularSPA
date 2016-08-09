@@ -52,22 +52,9 @@ namespace AngularSPA.Core.Lib
 
         #endregion
 
-        public PagedList<Vendor> GetAll()
-        {
-            try
-            {
-                PagedList<Vendor> vendors = new PagedList<Vendor>() { Content = _vendorContext.GetAll().ToList() };
+   
 
-                return vendors;
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-            return null;
-        }
-
-        public PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        public PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "VendorId", string sortDirection = "asc")
         {
             try
             {
@@ -77,11 +64,14 @@ namespace AngularSPA.Core.Lib
                     vendors = vendors.Where(x => x.VendorName.Contains(searchtext));
                 PagedList<Vendor> vendorsPageList = new PagedList<Vendor>()
                 {
-                    PageSize = pageSize,
                     CurrentPage = page,
-                    TotalRecords = vendors.Count()
+                    TotalRecords = vendors.Count(),
+                    PageSize=pageSize
                 };
-                vendorsPageList.Content = vendors.OrderBy(sortBy + " " + sortDirection).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                
+                vendorsPageList.Content = vendors.OrderBy(sortBy + " " + sortDirection)
+                                            .Skip((page - 1) * vendorsPageList.PageSize)
+                                            .Take(vendorsPageList.PageSize).ToList();
                 return vendorsPageList;
 
             }

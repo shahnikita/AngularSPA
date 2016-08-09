@@ -4,7 +4,7 @@ define(['app'], function (app) {
     var apiPaths = {
         addupdateVendor: "/vendor/InsertUpdateVendor/",
         getVendor: "/vendor/GetVendor/",
-        getAllVendor: '/Vendor/GetAllVendor',
+
         paginationVendor: '/Vendor/GetAllVendorPagination',
         deleteVendor: "/vendor/DeleteVendor/"
     };
@@ -13,37 +13,27 @@ define(['app'], function (app) {
 
         //The function for pagination
         this.getVendors = function (gridOptions) {
-            $http({
-                method: 'GET',
-                url: apiPaths.paginationVendor,
-                params: {
+            var paramObj = {};
+            if (gridOptions) {
+                paramObj =
+                {
                     searchtext: gridOptions.search,
                     page: gridOptions.pageNumber,
                     pageSize: gridOptions.pageSize,
                     sortBy: gridOptions.sortBy,
                     sortDirection: gridOptions.sortDirection ? 'desc' : 'asc'
-                },
-            }).then(function (resp) {
-                gridOptions.data = resp.data.Content;
-                gridOptions.totalItems = resp.data.TotalRecords;
-
-            }, function (err) {
-                gridOptions.data = "Call Failed " + err.status;
+                };
+            }
+            return $http({
+                method: 'GET',
+                url: apiPaths.paginationVendor,
+                params: paramObj,
             });
 
-            return gridOptions;
+           
         };
 
 
-        this.getAllVendors = function () {
-
-            return $http({
-                method: 'GET',
-                url: apiPaths.getAllVendor
-            });
-
-
-        }
 
         //The function to insert/update Vendor
         this.addupdateVendor = function (vendor) {

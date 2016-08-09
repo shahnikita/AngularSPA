@@ -9,7 +9,14 @@ define(['app', '../models/gridModel', '../services/vendorService'], function (ap
         $scope.gridOptions = gridModel;
         $scope.gridOptions.sortBy = 'VendorId';
         $scope.gridOptions.load = function () {
-            $scope.gridOptions = vendorService.getVendors(this);
+            var promise = vendorService.getVendors(this);
+            var self = this;
+            promise.then(function (resp) {
+                self.data = resp.data.Content;
+                self.totalItems = resp.data.TotalRecords;
+            }, function (err) {
+                $scope.message = "Call Failed " + err.status;
+            });
         };
 
         $scope.gridOptions.load();

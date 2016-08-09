@@ -27,7 +27,7 @@ namespace AngularSPA.Core.Controllers
 
         #region Public Variable"
 
-        public JsonResult GetAllProduct(string searchtext, int page = 1, int pageSize = 10, string sortBy = "ProductId", string sortDirection = "asc")
+        public JsonResult GetAllProduct(string searchtext, int page = 1, int pageSize = 0, string sortBy = "ProductId", string sortDirection = "asc")
         {
             PagedList<Product> productList = null;
             try

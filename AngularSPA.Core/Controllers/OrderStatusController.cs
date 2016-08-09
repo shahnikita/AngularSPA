@@ -21,23 +21,9 @@ namespace AngularSPA.Core.Controllers
             _orderStatusRepository = orderStatusRepository;
         }
 
-        public JsonResult GetAllOrderStatus()
-        {
-            IList<OrderStatus> orderStatusList = null;
-            try
-            {
-                orderStatusList = _orderStatusRepository.GetAll().Content;
+        
 
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-
-            return Json(orderStatusList, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetAllOrderStatusPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderStatusId", string sortDirection = "asc")
+        public JsonResult GetAllOrderStatusPagination(string searchtext, int page = 1, int pageSize = 0, string sortBy = "OrderStatusId", string sortDirection = "asc")
         {
             PagedList<OrderStatus> orderStatusList = null;
             try

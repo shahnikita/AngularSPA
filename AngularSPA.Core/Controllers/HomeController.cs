@@ -23,7 +23,7 @@ namespace AngularSPA.Core.Controllers
         }
         #region Public Variable"
 
-        public JsonResult GetAllOrderPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderId", string sortDirection = "asc")
+        public JsonResult GetAllOrderPagination(string searchtext, int page = 1, int pageSize = 0, string sortBy = "OrderId", string sortDirection = "asc")
         {
             PagedList<Order> orderList = null;
             try
@@ -40,18 +40,52 @@ namespace AngularSPA.Core.Controllers
             return Json(orderList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetAllOrder()
-        {
-            IList<Order> ordertList = null;
+        [HttpPost]
+        public JsonResult InsertUpdateOrder(Order item) {
+            int orderID = 0;
             try
             {
-                ordertList = _orderRepository.GetAll();
+                if (ModelState.IsValid)
+                {
+                    orderID =
+                        _orderRepository.InsertUpdate(item);
+                }
             }
             catch (Exception ex)
             {
                 GlobalUtil.HandleAndLogException(ex, this);
             }
-            return Json(ordertList, JsonRequestBehavior.AllowGet);
+            return Json(orderID != 0, JsonRequestBehavior.AllowGet);
+        
+        }
+
+        public JsonResult GetCountOrderByStatus()
+        {
+            IList<OrderStatus> orderStatusList = null;
+            try
+            {
+                orderStatusList = _orderRepository.GetCountOrderByStatus();
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+            return Json(orderStatusList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetOrder(int id)
+        {
+            Order order= null;
+            try
+            {
+                order = _orderRepository.Get(id);
+            }
+            catch (Exception ex)
+            {
+                GlobalUtil.HandleAndLogException(ex, this);
+            }
+
+            return Json(order, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

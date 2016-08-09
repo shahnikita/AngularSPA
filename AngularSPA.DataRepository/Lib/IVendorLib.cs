@@ -9,11 +9,6 @@ namespace AngularSPA.DataRepository.Lib
 {
     public interface IVendorLib : IDisposable
     {
-        /// <summary>
-        /// Get all vendors
-        /// </summary>
-        /// <returns></returns>
-        PagedList<Vendor> GetAll();
 
         /// <summary>
         /// pagination to vendors.
@@ -24,7 +19,7 @@ namespace AngularSPA.DataRepository.Lib
         /// <param name="sortBy"></param>
         /// <param name="sortDirection"></param>
         /// <returns>object of PagedList for vendor model </returns>
-        PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc");
+        PagedList<Vendor> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "VendorId", string sortDirection = "asc");
 
         /// <summary>
         /// get individual vendor by id

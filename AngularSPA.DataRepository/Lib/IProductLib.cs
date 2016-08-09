@@ -9,11 +9,7 @@ namespace AngularSPA.DataRepository.Lib
 {
     public interface IProductLib : IDisposable
     {
-        /// <summary>
-        /// Get all products
-        /// </summary>
-        /// <returns></returns>
-        PagedList<Product> GetAll();
+       
 
         /// <summary>
         /// pagination to products.
@@ -24,7 +20,7 @@ namespace AngularSPA.DataRepository.Lib
         /// <param name="sortBy"></param>
         /// <param name="sortDirection"></param>
         /// <returns>object of PagedList for Product model </returns>
-        PagedList<Product> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "ProductId", string sortDirection = "asc");
+        PagedList<Product> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "ProductId", string sortDirection = "asc");
 
         /// <summary>
         /// get individual Product by id

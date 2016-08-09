@@ -14,5 +14,8 @@ namespace AngularSPA.DataRepository.Models
         public int OrderStatusId { get; set; }
         [MaxLength(150)]
         public string OrderStatusName { get; set; }
+
+        [NotMapped]
+        public int OrderCount { get; set; }
     }
 }

@@ -22,23 +22,9 @@ namespace AngularSPA.Core.Controllers
        }
 
 
-       public JsonResult GetAllCustomer()
-       {
-           IList<Customer> customerList = null;
-           try
-           {
-               customerList = _customerRepository.GetAll().Content;
 
-           }
-           catch (Exception ex)
-           {
-               GlobalUtil.HandleAndLogException(ex, this);
-           }
 
-           return Json(customerList, JsonRequestBehavior.AllowGet);
-       }
-
-       public JsonResult GetAllCustomerPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerId", string sortDirection = "asc")
+       public JsonResult GetAllCustomerPagination(string searchtext, int page = 1, int pageSize = 0, string sortBy = "CustomerId", string sortDirection = "asc")
        {
            PagedList<Customer> customerList = null;
            try

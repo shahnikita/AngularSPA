@@ -21,7 +21,7 @@ namespace AngularSPA.Util.GlobalUtils
             var log = LogManager.GetLogger(callingType.GetType());
             if (!log.IsErrorEnabled) return;
             log.Error(ex.Message, ex);
-            throw ex;
+           // throw ex;
         }
 
         /// <summary>

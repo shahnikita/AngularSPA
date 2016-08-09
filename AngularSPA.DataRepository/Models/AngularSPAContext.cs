@@ -13,16 +13,19 @@ namespace AngularSPA.DataRepository.Models
         public AngularSPAContext()
             : base("DefaultConnection")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
+        public DbSet<Order> Order { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<Order> Order { get; set; }
         public DbSet<OrderStatus> OrderStatus { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+           
         }
 
     }

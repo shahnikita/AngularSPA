@@ -9,11 +9,7 @@ namespace AngularSPA.DataRepository.Lib
 {
     public interface ICustomerLib
     {
-        /// <summary>
-        /// Get all Customers
-        /// </summary>
-        /// <returns></returns>
-        PagedList<Customer> GetAll();
+       
 
         /// <summary>
         /// pagination to Customers.
@@ -24,7 +20,7 @@ namespace AngularSPA.DataRepository.Lib
         /// <param name="sortBy"></param>
         /// <param name="sortDirection"></param>
         /// <returns>object of PagedList for Customer model </returns>
-        PagedList<Customer> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "CustomerId", string sortDirection = "asc");
+        PagedList<Customer> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "CustomerId", string sortDirection = "asc");
 
         /// <summary>
         /// get individual Customer by id

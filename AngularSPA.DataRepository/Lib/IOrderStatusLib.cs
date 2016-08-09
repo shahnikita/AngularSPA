@@ -10,11 +10,7 @@ namespace AngularSPA.DataRepository.Lib
 
     public interface IOrderStatusLib : IDisposable
     {
-        /// <summary>
-        /// Get all orderstatus
-        /// </summary>
-        /// <returns></returns>
-        PagedList<OrderStatus> GetAll();
+        
 
         /// <summary>
         /// pagination to orderstatus.
@@ -25,7 +21,7 @@ namespace AngularSPA.DataRepository.Lib
         /// <param name="sortBy"></param>
         /// <param name="sortDirection"></param>
         /// <returns>object of PagedList for Orderstatus model </returns>
-        PagedList<OrderStatus> GetAll(string searchtext, int page = 1, int pageSize = 10, string sortBy = "OrderStatusId", string sortDirection = "asc");
+        PagedList<OrderStatus> GetAll(string searchtext, int page = 1, int pageSize = 0, string sortBy = "OrderStatusId", string sortDirection = "asc");
 
         /// <summary>
         /// get individual OrderStatus by id

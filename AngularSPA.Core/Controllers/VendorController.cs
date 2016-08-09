@@ -23,23 +23,8 @@ namespace AngularSPA.Core.Controllers
             _vendorRepository = vendorRepository;
         }
 
-        public JsonResult GetAllVendor()
-        {
-            IList<Vendor> vendorList = null;
-            try
-            {
-                vendorList = _vendorRepository.GetAll().Content;
 
-            }
-            catch (Exception ex)
-            {
-                GlobalUtil.HandleAndLogException(ex, this);
-            }
-
-            return Json(vendorList, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetAllVendorPagination(string searchtext, int page = 1, int pageSize = 10, string sortBy = "VendorId", string sortDirection = "asc")
+        public JsonResult GetAllVendorPagination(string searchtext, int page = 1, int pageSize = 0, string sortBy = "VendorId", string sortDirection = "asc")
         {
             PagedList<Vendor> vendorList = null;
             try

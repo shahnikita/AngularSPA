@@ -20,7 +20,7 @@ namespace AngularSPA.DataRepository.Models
         private int _pageSize { get; set; }
         public int PageSize
         {
-            get { return this._pageSize == 0 ? this.Content.Count : this._pageSize; }
+            get { return this._pageSize == 0 ? this.TotalRecords : this._pageSize; }
             set { this._pageSize = value; }
         }
         private int _totalRecords { get; set; }

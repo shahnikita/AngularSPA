@@ -4,7 +4,7 @@ define(['app'], function (app) {
     var apiPaths = {
         addupdateOrderStatus: "/OrderStatus/InsertUpdateOrderStatus/",
         getOrderStatus: "/OrderStatus/GetOrderStatus/",
-        getAllOrderStatus: '/OrderStatus/GetAllOrderStatus',
+        
         paginationOrderStatus: '/OrderStatus/GetAllOrderStatusPagination',
         deleteOrderStatus: "/OrderStatus/DeleteOrderStatus/"
     };
@@ -13,27 +13,27 @@ define(['app'], function (app) {
     var OrderStatusService = function ($http) {
         //The function for pagination
         this.getOrderStatuses = function (gridOptions) {
-            return $http({
-                method: 'GET',
-                url: apiPaths.paginationOrderStatus,
-                params: {
+            var paramObj = {};
+            if (gridOptions) {
+                paramObj =
+                {
                     searchtext: gridOptions.search,
                     page: gridOptions.pageNumber,
                     pageSize: gridOptions.pageSize,
                     sortBy: gridOptions.sortBy,
                     sortDirection: gridOptions.sortDirection ? 'desc' : 'asc'
-                },
+                };
+            }
+            return $http({
+                method: 'GET',
+                url: apiPaths.paginationOrderStatus,
+                params: paramObj,
             });
 
              
         };
 
-        this.getAllOrderStatus = function () {
-            return $http({
-                method: 'GET',
-                url: apiPaths.getAllOrderStatus
-            });
-        }
+     
 
         //The function to insert/update OrderStatus
         this.addupdateOrderStatus = function (orderStatus) {

@@ -2,14 +2,14 @@
 
     var injectParams = ['$scope', 'gridModel', 'productService', 'vendorService', ];
 
-    var ProductController = function ($scope, gridModel, productService, vendorSerivce) {
+    var ProductController = function ($scope, gridModel, productService, vendorService) {
         $scope.message = 'Product Page';
         $scope.isDisplayForm = false;
         $scope.LoadVendors = function () {
-            var promise = vendorSerivce.getAllVendors();
+            var promise = vendorService.getVendors();
                 promise       
             .then(function (resp) {
-                $scope.Vendors = resp.data;
+                $scope.Vendors = resp.data.Content;
             }, function (err) {
                 $scope.message = "Call Failed " + err.status;
             });

@@ -10,7 +10,15 @@ define(['app', '../models/gridModel', '../services/customerService'], function (
         $scope.gridOptions.sortBy = 'CustomerId';
 
         $scope.gridOptions.load = function () {
-            $scope.gridOptions = customerService.getCustomers(this);
+            var promise = customerService.getCustomers(this);
+            var self = this;
+            promise.then(function (resp) {
+                self.data = resp.data.Content;
+                self.totalItems = resp.data.TotalRecords;
+            }, function (err) {
+                $scope.message = "Call Failed " + err.status;
+            });
+           
         };
 
         $scope.gridOptions.load();
