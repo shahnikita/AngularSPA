@@ -150,28 +150,28 @@
                                                                                             :'sorting'"
                                                         data-ng-click="gridOptions.changeSorting('OrderId')">Id</th>
 
-                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='CustomerName'?
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='Customer.CustomerName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'"
-                                                        data-ng-click="gridOptions.changeSorting('CustomerName')">Customer</th>
+                                                        data-ng-click="gridOptions.changeSorting('Customer.CustomerName')">Customer</th>
 
-                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='ProductName'?
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='Product.ProductName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'"
-                                                        data-ng-click="gridOptions.changeSorting('ProductName')">Product</th>
+                                                        data-ng-click="gridOptions.changeSorting('Product.ProductName')">Product</th>
 
-                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='VendorName'?
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='Product.Vendor.VendorName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'"
-                                                        data-ng-click="gridOptions.changeSorting('VendorName')">Vendor</th>
+                                                        data-ng-click="gridOptions.changeSorting('Product.Vendor.VendorName')">Vendor</th>
 
                                                     <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='ProductQuantity'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
                                                 :'sorting'" data-ng-click="gridOptions.changeSorting('ProductQuantity')">Quantity</th>
 
-                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='OrderStatusName'?
+                                                    <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='OrderStatus.OrderStatusName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
-                                                :'sorting'" data-ng-click="gridOptions.changeSorting('OrderStatusName')">Order Status</th>
+                                                :'sorting'" data-ng-click="gridOptions.changeSorting('OrderStatus.OrderStatusName')">Order Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -240,13 +240,13 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="panel" data-ng-show="isDisplayForm">
-                                <form name="OrderForm" ng-submit="insert()" novalidate>
+                                <form name="OrderForm" data-ng-submit="insert()" novalidate>
 
                                     <!--ID-->
-                                    <input type="hidden" name="OrderId" ng-model="order.OrderId" />
+                                    <input type="hidden" name="OrderId" data-ng-model="order.OrderId" />
 
                                     <!-- Customer -->
-                                    <div class="form-group" ng-class="{ 'has-error' : OrderForm.CustomerId.$invalid && !OrderForm.CustomerId.$pristine }">
+                                    <div class="form-group" data-ng-class="{ 'has-error' : OrderForm.CustomerId.$invalid && !OrderForm.CustomerId.$pristine }">
                                         <label>Customer</label>
                                         <select class="form-control"
                                             name="CustomerId" convert-to-number

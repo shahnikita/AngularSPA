@@ -145,6 +145,7 @@ E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\System.Web.WebPages.Razor.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\WebGrease.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\WebMatrix.Data.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\WebMatrix.WebData.dll
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\System.Linq.Dynamic.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\log4net.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\AngularSPA.Core.pdb
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\AngularSPA.DataRepository.pdb
@@ -175,4 +176,3 @@ E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\log4net.xml
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.Web.csprojResolveAssemblyReference.cache
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA\obj\Debug\AngularSPA.pdb
-E:\Nikita\DemoProjects\AngularSPA\AngularSPA\bin\System.Linq.Dynamic.dll

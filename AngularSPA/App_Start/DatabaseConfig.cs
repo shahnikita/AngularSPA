@@ -1,13 +1,13 @@
 ﻿using AngularSPA.DataRepository.Models;
-using AngularSPA.DataRepository.Migrations;
+
 using Autofac;
 using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using AngularSPA.Util.GlobalUtils;
+using AngularSPA.DataRepository.Migrations;
 
 namespace AngularSPA.App_Start
 {
@@ -17,11 +17,14 @@ namespace AngularSPA.App_Start
         {
             try
             {
+
                 Database.SetInitializer(new MigrateDatabaseToLatestVersion<AngularSPAContext,Configuration>());
                 using (var dbContext = componentContext.Resolve<DbContext>())
                 {
+                    
+                   
+                    dbContext.Database.Initialize(true);
 
-                   dbContext.Database.Initialize(false);
                     //if (!dbContext.Database.Exists())
                     //{
                     //    dbContext.Database.Initialize(false);

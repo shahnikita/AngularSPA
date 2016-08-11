@@ -34,3 +34,5 @@ E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\bin\Debug\log4net.xm
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\obj\Debug\AngularSPA.DataRepository.csprojResolveAssemblyReference.cache
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\obj\Debug\AngularSPA.DataRepository.dll
 E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\obj\Debug\AngularSPA.DataRepository.pdb
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\obj\Debug\AngularSPA.DataRepository.Migrations.test.resources
+E:\Nikita\DemoProjects\AngularSPA\AngularSPA.DataRepository\obj\Debug\AngularSPA.DataRepository.csproj.GenerateResource.Cache
