@@ -18,18 +18,19 @@ namespace AngularSPA.App_Start
             try
             {
 
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<AngularSPAContext,Configuration>());
+                
                 using (var dbContext = componentContext.Resolve<DbContext>())
                 {
                     
                    
-                    dbContext.Database.Initialize(true);
+                   // dbContext.Database.Initialize(false);
 
-                    //if (!dbContext.Database.Exists())
-                    //{
-                    //    dbContext.Database.Initialize(false);
+                    if (!dbContext.Database.Exists())
+                    {
+                        Database.SetInitializer(new MigrateDatabaseToLatestVersion<AngularSPAContext, Configuration>());
+                        dbContext.Database.Initialize(false);
 
-                    //}
+                    }
 
 
                 }

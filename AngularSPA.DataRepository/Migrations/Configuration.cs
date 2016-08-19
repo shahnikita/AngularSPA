@@ -8,9 +8,11 @@ namespace AngularSPA.DataRepository.Migrations
 
     public class Configuration : DbMigrationsConfiguration<AngularSPA.DataRepository.Models.AngularSPAContext>
     {
+        
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+
         }
 
         protected override void Seed(AngularSPA.DataRepository.Models.AngularSPAContext context)
@@ -29,7 +31,7 @@ namespace AngularSPA.DataRepository.Migrations
             //
 
             Random rand = new Random();
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 5000; i++)
             {
                 context.Order.Add(new Order()
                 {
@@ -41,6 +43,8 @@ namespace AngularSPA.DataRepository.Migrations
                 });
 
             }
+
+           
             context.SaveChanges();
         }
     }

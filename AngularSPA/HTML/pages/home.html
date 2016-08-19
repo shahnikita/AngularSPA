@@ -167,11 +167,13 @@
 
                                                     <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='ProductQuantity'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
-                                                :'sorting'" data-ng-click="gridOptions.changeSorting('ProductQuantity')">Quantity</th>
+                                                :'sorting'"
+                                                        data-ng-click="gridOptions.changeSorting('ProductQuantity')">Quantity</th>
 
                                                     <th data-ng-class="gridOptions.sortBy!=null && gridOptions.sortBy=='OrderStatus.OrderStatusName'?
                                                 gridOptions.sortDirection!=null && gridOptions.sortDirection==true?'sorting_desc':'sorting_asc'
-                                                :'sorting'" data-ng-click="gridOptions.changeSorting('OrderStatus.OrderStatusName')">Order Status</th>
+                                                :'sorting'"
+                                                        data-ng-click="gridOptions.changeSorting('OrderStatus.OrderStatusName')">Order Status</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -202,27 +204,46 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                    </div>
-                                    <div class="col-sm-6">
+                                    
+                                    <div class="col-sm-12">
                                         <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                             <ul class="pagination">
+
+                                                <li class="paginate_button"
+                                                    data-ng-class="(gridOptions.pageNumber-1)>0?  '':'disabled'"
+                                                    data-ng-if="gridOptions.getTotalPages()>5 "
+                                                    data-ng-click="gridOptions.changePageNumber(1)">
+                                                    <a href="#">First
+                                                    </a>
+                                                </li>
                                                 <li class="paginate_button previous"
                                                     data-ng-class="(gridOptions.pageNumber-1)>0?  '':'disabled'"
                                                     data-ng-click="gridOptions.previousPage()">
                                                     <a href="#">Previous</a>
                                                 </li>
+
+                                                <!--data-ng-repeat="n in [] | range:(gridOptions.pageNumber>3?(gridOptions.pageNumber-2):1):(gridOptions.pageNumber>3?(gridOptions.pageNumber+3>gridOptions.getTotalPages() gridOptions.pageNumber+3):6) "-->
                                                 <li class="paginate_button"
-                                                    data-ng-repeat="n in [] | range:gridOptions.getTotalPages()"
+                                                    data-ng-repeat="n in [] | range:gridOptions.pageNumber:gridOptions.getTotalPages():gridOptions.pageSize"
                                                     data-ng-class="gridOptions.pageNumber == n? 'active' : ''"
                                                     data-ng-click="gridOptions.changePageNumber(n)">
                                                     <a href="#">{{n}}
                                                     </a>
                                                 </li>
+
+
                                                 <li class="paginate_button next"
                                                     data-ng-class="(gridOptions.pageNumber+1)>gridOptions.getTotalPages()?  'disabled':''"
                                                     data-ng-click="gridOptions.nextPage()">
                                                     <a href="#">Next</a></li>
+
+                                                <li class="paginate_button"
+                                                    data-ng-class="(gridOptions.getTotalPages()-gridOptions.pageNumber)>0?  '':'disabled'"
+                                                    data-ng-if="gridOptions.getTotalPages()>5 "
+                                                    data-ng-click="gridOptions.changePageNumber(gridOptions.getTotalPages())">
+                                                    <a href="#">Last
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -258,7 +279,7 @@
                                     </div>
 
                                     <!-- Product -->
-                                    <div class="form-group" ng-class="{ 'has-error' : OrderForm.ProductId.$invalid && !OrderForm.ProductId.$pristine }">
+                                    <div class="form-group" data-ng-class="{ 'has-error' : OrderForm.ProductId.$invalid && !OrderForm.ProductId.$pristine }">
                                         <label>Product</label>
                                         <select class="form-control"
                                             name="ProductId" convert-to-number
@@ -270,14 +291,14 @@
                                     </div>
 
                                     <!--product quantity-->
-                                    <div class="form-group" ng-class="{ 'has-error' : OrderForm.ProductQuantity.$invalid && !OrderForm.ProductQuantity.$pristine }">
+                                    <div class="form-group" data-ng-class="{ 'has-error' : OrderForm.ProductQuantity.$invalid && !OrderForm.ProductQuantity.$pristine }">
                                         <label>Quantity:</label>
-                                        <input type="number" name="ProductQuantity" class="form-control" ng-model="order.ProductQuantity" required min="2" max="300">
-                                        <p class="help-block" ng-show="order.ProductQuantity.$dirty && order.ProductQuantity.$error.required">Required!</p>
+                                        <input type="number" name="ProductQuantity" class="form-control" data-ng-model="order.ProductQuantity" required min="2" max="300">
+                                        <p class="help-block" data-ng-show="order.ProductQuantity.$dirty && order.ProductQuantity.$error.required">Required!</p>
                                     </div>
 
                                     <!-- Order Status -->
-                                    <div class="form-group" ng-class="{ 'has-error' : OrderForm.OrderStatusId.$invalid && !OrderForm.OrderStatusId.$pristine }">
+                                    <div class="form-group" data-ng-class="{ 'has-error' : OrderForm.OrderStatusId.$invalid && !OrderForm.OrderStatusId.$pristine }">
                                         <label>Order Status:</label>
                                         <select class="form-control"
                                             name="OrderStatusId" convert-to-number
@@ -288,7 +309,7 @@
                                         </select>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary" ng-disabled="OrderForm.$invalid||(!OrderForm.$dirty)">Submit</button>
+                                    <button type="submit" class="btn btn-primary" data-ng-disabled="OrderForm.$invalid||(!OrderForm.$dirty)">Submit</button>
                                     <button type="button" class="btn btn-default" data-ng-click="formToggle()">Cancel</button>
                                 </form>
 

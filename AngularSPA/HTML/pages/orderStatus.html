@@ -93,7 +93,7 @@
                                                     <a href="#">Previous</a>
                                                 </li>
                                                 <li class="paginate_button"
-                                                    data-ng-repeat="n in [] | range:gridOptions.getTotalPages()"
+                                                    data-ng-repeat="n in [] | range:gridOptions.pageNumber:gridOptions.getTotalPages()"
                                                     data-ng-class="gridOptions.pageNumber == n? 'active' : ''"
                                                     data-ng-click="gridOptions.changePageNumber(n)">
                                                     <a href="#">{{n}}
