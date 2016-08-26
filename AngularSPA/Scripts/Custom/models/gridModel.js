@@ -1,5 +1,6 @@
 ﻿'use strict';
-define(['app'], function (app) {
+define(['app', '../directives/displayGridHeader'
+            , '../directives/displayGridFooter'], function (app) {
 
     var injectParams = [];
     var GridModel = function () {
@@ -12,6 +13,7 @@ define(['app'], function (app) {
             sortBy:null,
             sortDirection: false,//bit
             search: null,
+            
             getTotalPages: function () {
                 return Math.ceil(this.totalItems / this.pageSize);
             },
@@ -34,6 +36,11 @@ define(['app'], function (app) {
             changeSorting: function (sort) {
                 this.sortBy = sort;
                 this.sortDirection = this.sortDirection != null ? !this.sortDirection : false;
+                this.load();
+            },
+            changePagesize: function (size) {
+                //this.pageSize = size;
+                this.pageNumber = 1;
                 this.load();
             }
         }

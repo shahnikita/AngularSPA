@@ -1,19 +1,22 @@
-﻿/// <reference path="../angular.intellisense.js" />
-
-
+﻿
+/// <reference path="../Lib/Angular/angular.intellisense.js" />
+'use strict';
 
 
 define(['angular'
-         ,'angularRoute'
+         , 'angularRoute'
+         , 'angularDatepicker'
          , 'jquery'
          , 'directives/loading'
           , 'directives/anchorPrevent'
          , 'services/routeResolver'
          , 'filters/rangeFilter'
-], function (angular, angularRoute, $, loadingDir, anchorPrevent, routResolver, rangeFilter) {
+         , 'filters/jsonDateFormatter'
+
+], function (angular, angularRoute, angularDatepicker, $, loadingDir, anchorPrevent, routResolver, rangeFilter, jsonDateFormatter) {
     // create the module and name it adminApp
-    var adminApp = angular.module('adminApp', ['ngRoute', 'routeResolverServices', 'LoadingDirective','AnchorPreventDirective', 'Range']);
-   
+    var adminApp = angular.module('adminApp', ['ngRoute', 'ng-bootstrap-datepicker', 'routeResolverServices', 'LoadingDirective', 'AnchorPreventDirective', 'Range', 'JsonDateFormatter']);
+    
     // configure our routes
     adminApp.config(['$routeProvider', 'routeResolverProvider', '$controllerProvider',
                   '$compileProvider', '$filterProvider', '$provide',

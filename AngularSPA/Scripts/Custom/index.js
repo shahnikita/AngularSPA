@@ -1,13 +1,16 @@
-﻿'use strict';
+﻿
+'use strict';
+
+
 require.config({
     paths: {
-        jquery: '../jquery-1.9.1',
-        bootstrap: '../bootstrap.min',
-        metisMenu: '../metisMenu.min',
-        angular: '../angular',
-        angularRoute: '../angular-route.min',
-
-        uiGrid:'../ui-grid.min'
+        jquery: '../Lib/Jquery/jquery-1.9.1.min',
+        bootstrap: '../Lib/Bootstrap/bootstrap.min',
+        metisMenu: '../Lib/MetisMenu/metisMenu.min',
+        angular: '../Lib/Angular/angular',
+        angularRoute: '../Lib/Angular/angular-route.min',
+        angularDatepicker:'../Lib/Angular/angular-bootstrap-datepicker',
+        uiGrid: '../Lib/UiGrid/ui-grid.min'
     },
     shim: {
         jquery: {
@@ -19,6 +22,10 @@ require.config({
         angularRoute: {
             deps: ['angular'],
             exports: 'angularRouter'
+        },
+        angularDatepicker: {
+            deps: ['angular', 'jquery'],
+            exports: 'angularDatepicker'
         },
         uiGrid: {
             deps: ['angular', 'jquery'],
@@ -33,4 +40,5 @@ require(
     ['app'],
     function () {
         angular.bootstrap(document, ['adminApp']);
+       
     });

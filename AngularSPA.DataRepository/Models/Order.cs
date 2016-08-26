@@ -16,6 +16,7 @@ namespace AngularSPA.DataRepository.Models
         public int ProductId { get; set; }
         public int OrderStatusId { get; set; }
         public int ProductQuantity { get; set; }
+        public DateTime OrderPlacedDate { get; set; }
 
        [ForeignKey("CustomerId")]
         public  Customer Customer { get; set; }

@@ -11,7 +11,7 @@ namespace AngularSPA.DataRepository.Migrations
         
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
 
         }
 
@@ -31,15 +31,21 @@ namespace AngularSPA.DataRepository.Migrations
             //
 
             Random rand = new Random();
+
+            DateTime start = new DateTime(1995, 1, 1);
+            int range = (DateTime.Today - start).Days;         
+   
+            
             for (int i = 0; i < 5000; i++)
             {
+                start = new DateTime(1995, 1, 1);
                 context.Order.Add(new Order()
                 {
                     CustomerId = rand.Next(1, 3),
                     OrderStatusId = rand.Next(1, 3),
                     ProductId = rand.Next(1, 4),
-                    ProductQuantity = rand.Next(1, 100)
-
+                    ProductQuantity = rand.Next(1, 100),
+                    OrderPlacedDate=start.AddDays(rand.Next(range))
                 });
 
             }

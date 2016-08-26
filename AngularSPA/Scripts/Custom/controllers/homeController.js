@@ -1,15 +1,34 @@
 ﻿
 
 
-define(['app', '../models/gridModel', '../services/orderService', '../services/customerService', '../services/productService', '../services/orderStatusService', '../directives/convertToNumber'], function (app) {
+define(['app'
+        , '../models/gridModel'
+        , '../services/orderService'
+        , '../services/customerService'
+        , '../services/productService'
+        , '../services/orderStatusService'
+        , '../directives/convertToNumber'
+        , 'angularDatepicker'
+], function (app) {
 
-    var injectParams = ['$scope', 'gridModel', 'orderService','customerService','productService','orderStatusService'];
+    var injectParams = ['$scope', 'gridModel', 'orderService', 'customerService', 'productService', 'orderStatusService'];
 
     var HomeController = function ($scope, gridModel, orderService, customerService, productService, orderStatusService) {
         $scope.message = 'Dashboard';
         $scope.gridOptions = gridModel;
 
         $scope.gridOptions.sortBy = 'OrderId';
+
+        $scope.gridOptions.columns = [
+            { field: 'OrderId', display: 'Id' },
+            { field: 'Customer.CustomerName', display: 'Customer'},
+            { field: 'OrderPlacedDate', display: 'Placed On' },
+         
+
+        ];
+
+
+
         $scope.gridOptions.load = function () {
             var promise = orderService.getOrders(this);
             var self = this;
@@ -23,6 +42,17 @@ define(['app', '../models/gridModel', '../services/orderService', '../services/c
 
         $scope.gridOptions.load();
 
+
+
+        $scope.datepickerOptions = {
+            format: 'yyyy-mm-dd',
+            language: 'en',
+            autoclose: true,
+            weekStart: 0
+        };
+
+
+
         //var getCountOrderByStatus = function () {
         //    var promise = orderService.getCountOrderByStatus();
         //    promise
@@ -34,7 +64,7 @@ define(['app', '../models/gridModel', '../services/orderService', '../services/c
 
         //};
         //getCountOrderByStatus();
-        
+
         var LoadRelatedData = function () {
             //load customers
             if (!$scope.Customers) {
@@ -68,12 +98,6 @@ define(['app', '../models/gridModel', '../services/orderService', '../services/c
             }
         }
 
-        //$scope.$watch('isDisplayForm', function (newValue, oldValue) {
-        //    if(newValue)
-        //        LoadRelatedData();
-        //});
-
-
         // Function to add toggle behaviour to form.
         $scope.formToggle = function () {
             $scope.isDisplayForm = !$scope.isDisplayForm;
@@ -81,7 +105,7 @@ define(['app', '../models/gridModel', '../services/orderService', '../services/c
             $scope.OrderForm.$setPristine();
             if ($scope.isDisplayForm)
                 LoadRelatedData();
-            
+
         }
 
 
@@ -106,7 +130,7 @@ define(['app', '../models/gridModel', '../services/orderService', '../services/c
                 $scope.formToggle();
                 $scope.isDisplayForm = true;
                 $scope.order = resp.data;
-               
+
 
             }, function (err) {
                 $scope.message = "Call Failed " + err.status;
