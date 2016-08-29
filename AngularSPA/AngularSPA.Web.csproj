@@ -199,6 +199,7 @@
     <Content Include="Scripts\Custom\controllers\customerController.js" />
     <Content Include="Scripts\Custom\controllers\orderStatusController.js" />
     <Content Include="Scripts\Custom\directives\convertToNumber.js" />
+    <Content Include="Scripts\Custom\directives\displayGridTable.js" />
     <Content Include="Scripts\Custom\directives\displayGridFooter.js" />
     <Content Include="Scripts\Custom\directives\displayGridHeader.js" />
     <Content Include="Scripts\Custom\filters\jsonDateFormatter.js" />

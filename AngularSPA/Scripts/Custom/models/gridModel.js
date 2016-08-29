@@ -1,6 +1,7 @@
 ﻿'use strict';
 define(['app', '../directives/displayGridHeader'
-            , '../directives/displayGridFooter'], function (app) {
+            , '../directives/displayGridFooter'
+            , '../directives/displayGridTable'], function (app) {
 
     var injectParams = [];
     var GridModel = function () {
